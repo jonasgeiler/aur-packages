@@ -1,0 +1,17 @@
+pkgbase = yaak-appimage
+	pkgdesc = Yaak is a modern desktop app for interacting with REST, GraphQL, and gRPC (Latest AppImage)
+	pkgver = 2024.3.10
+	pkgrel = 1
+	url = https://yaak.app/
+	arch = x86_64
+	license = unknown
+	depends = glibc
+	depends = zlib
+	depends = hicolor-icon-theme
+	provides = yaak
+	options = !strip
+	options = !debug
+	source_x86_64 = https://releases.yaak.app/2024.3.10/yaak_2024.3.10_amd64.AppImage.tar.gz
+	sha256sums_x86_64 = b997fdec1e2c0e2f2175b72cbff35d198fd532e258a4f2da1f185ebd0eac1b59
+
+pkgname = yaak-appimage
