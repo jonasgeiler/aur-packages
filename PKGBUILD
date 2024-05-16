@@ -3,9 +3,9 @@
 _name=yaak
 
 pkgname="${_name}"-appimage
-pkgver=2024.3.10
+pkgver=2024.4.2
 pkgrel=1
-pkgdesc="Yaak is a modern desktop app for interacting with REST, GraphQL, and gRPC (Latest AppImage)"
+pkgdesc="Yaak is a cross-platform desktop app for interacting with REST, GraphQL, and gRPC (AppImage version)"
 arch=('x86_64')
 url="https://yaak.app/"
 license=('unknown')
@@ -14,7 +14,7 @@ provides=("${_name}")
 options=(!strip !debug) # necessary, otherwise the AppImage file in the package gets truncated
 _appimage="${_name}_${pkgver}_amd64.AppImage"
 source_x86_64=("https://releases.yaak.app/${pkgver}/${_appimage}.tar.gz")
-sha256sums_x86_64=('b997fdec1e2c0e2f2175b72cbff35d198fd532e258a4f2da1f185ebd0eac1b59')
+sha256sums_x86_64=('e24e3f18ba1eca4e5e82d4fc97f9f5c943f633807f786e930da002d0d7457d6c')
 
 prepare() {
     # Extract AppImage
