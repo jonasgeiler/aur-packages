@@ -5,7 +5,7 @@ _basedesc='The most intuitive desktop API client to organize and execute REST, G
 
 pkgname="${_basename}-appimage"
 pkgver=2024.8.2
-pkgrel=1
+pkgrel=2
 pkgdesc="${_basedesc} (AppImage download)"
 url='https://yaak.app/'
 license=(MIT)
@@ -38,12 +38,11 @@ build() {
     echo 'Path=/usr/bin' >> squashfs-root/yaak-app.desktop
 
     # Adjust name in .desktop to match website
-    sed -i -E 's|Name=.*|Name=Yaak|' \
+    sed -i -E 's|Name=yaak|Name=Yaak|' \
         squashfs-root/yaak-app.desktop
 
-    # Adjust comment in .desktop to match website
-    sed -i -E "s|Comment=.*|Comment=${_basedesc}|" \
-        squashfs-root/yaak-app.desktop
+    # Add generic name to .desktop
+    echo 'GenericName=API Client' >> squashfs-root/yaak-app.desktop
 
     # Fix permissions (AppImage extract permissions are 700 for all directories)
     chmod -R a-x+rX squashfs-root/usr
