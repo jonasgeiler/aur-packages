@@ -1,20 +1,29 @@
-# Maintainer: Jonas Geiler <aur@jonasgeiler.com>
+# Maintainer: Jonas Geiler <aur at jonasgeiler dot com>
 
-_name=yaak
+_basename=yaak
+_basedesc='The most intuitive desktop API client to organize and execute REST, GraphQL, and gRPC requests'
 
-pkgname="${_name}"-appimage
-pkgver=2024.7.0
+pkgname="${_basename}-appimage"
+pkgver=2024.8.2
 pkgrel=1
-pkgdesc="Interact with REST, GraphQL and gRPC in a simple yet powerful desktop application (AppImage version)"
-arch=('x86_64')
-url="https://yaak.app/"
-license=('unknown')
-depends=('glibc' 'zlib' 'hicolor-icon-theme')
-provides=("${_name}")
-options=(!strip !debug) # necessary, otherwise the AppImage file in the package gets truncated
-_appimage="${_name}_${pkgver}_amd64.AppImage"
-source_x86_64=("https://releases.yaak.app/releases/${pkgver}/${_appimage}.tar.gz")
-sha256sums_x86_64=('6f6350b5656700f7aa9e73918ed5a4038d2732ef06f0a2d88f11048257efd61c')
+pkgdesc="${_basedesc} (AppImage download)"
+url='https://yaak.app/'
+license=(MIT)
+provides=("${_basename}")
+
+depends=(glibc
+         hicolor-icon-theme
+         zlib)
+
+_appimage="${pkgname}-${pkgver}.AppImage"
+_license="${pkgname}-${pkgver}.LICENSE"
+arch=(x86_64)
+# TODO: Use "https://raw.githubusercontent.com/yaakapp/app/v${pkgver}/LICENSE" after next release
+source_x86_64=("${_appimage}::https://github.com/yaakapp/app/releases/download/v${pkgver}/yaak_${pkgver}_amd64.AppImage"
+               "${_license}::https://raw.githubusercontent.com/yaakapp/app/master/LICENSE")
+b2sums_x86_64=('4f69a9ace92b1844744b9a38c0c02577f466cc83fe8493ea7d6d416473279dec94f5e2a2849a9ab4c6d8352e035053f3eda337f3c8347feef15c940e85f3a8b0'
+               '011fb406bfe4a8944efbae1f9cfa420fe421f1de3ae628802548676a1fe1318850a5f98c60cd29899efe3946dec329b6607f04917e966808f62f9e4ecaaea13b')
+options=('!strip')
 
 prepare() {
     # Extract AppImage
@@ -23,28 +32,63 @@ prepare() {
 }
 
 build() {
-    # Adjust .desktop so it will work outside of AppImage container
-    sed -i -E "s|Exec=.*|Exec=env DESKTOPINTEGRATION=0 APPIMAGELAUNCHER_DISABLE=1 /usr/bin/${_name}|" \
-        "squashfs-root/${_name}-app.desktop"
+    # Adjust executable in .desktop so it will work outside of AppImage container
+    sed -i -E "s|Exec=.*|Exec=env DESKTOPINTEGRATION=0 APPIMAGELAUNCHER_DISABLE=1 /usr/bin/${_basename}|" \
+        squashfs-root/yaak-app.desktop
+    echo 'Path=/usr/bin' >> squashfs-root/yaak-app.desktop
 
-    # Fix permissions; .AppImage permissions are 700 for all directories
+    # Adjust name in .desktop to match website
+    sed -i -E 's|Name=.*|Name=Yaak|' \
+        squashfs-root/yaak-app.desktop
+
+    # Adjust comment in .desktop to match website
+    sed -i -E "s|Comment=.*|Comment=${_basedesc}|" \
+        squashfs-root/yaak-app.desktop
+
+    # Fix permissions (AppImage extract permissions are 700 for all directories)
     chmod -R a-x+rX squashfs-root/usr
+
+    # Remove empty directories in icons directory
+    find squashfs-root/usr/share/icons -type d -empty -delete
 }
 
 package() {
-    # AppImage
-    install -Dm755 "${srcdir}/${_appimage}" \
-        "${pkgdir}/opt/appimages/${_name}.AppImage"
+    # Add AppImage
+    install -Dm755 \
+        "${srcdir}/${_appimage}" \
+        "${pkgdir}/opt/${pkgname}/${_basename}.AppImage"
 
-    # Desktop file
-    install -Dm644 "${srcdir}/squashfs-root/${_name}-app.desktop" \
-        "${pkgdir}/usr/share/applications/${_name}-app.desktop"
+    # Add license
+    install -Dm644 \
+        "${srcdir}/${_license}" \
+        "${pkgdir}/opt/${pkgname}/LICENSE"
 
-    # Icon images
+    # Add .desktop file
+    install -Dm644 \
+        "${srcdir}/squashfs-root/yaak-app.desktop" \
+        "${pkgdir}/opt/${pkgname}/${_basename}.desktop"
+
+    # Add icon images (directly into /usr/share/icons)
     install -dm755 "${pkgdir}/usr/share/"
-    cp -a "${srcdir}/squashfs-root/usr/share/icons" "${pkgdir}/usr/share/"
+    cp -a \
+        "${srcdir}/squashfs-root/usr/share/icons" \
+        "${pkgdir}/usr/share/icons"
 
-    # Symlink executable
+    # Symlink AppImage
     install -dm755 "${pkgdir}/usr/bin/"
-    ln -s "/opt/appimages/${_name}.AppImage" "${pkgdir}/usr/bin/${_name}"
+    ln -s \
+        "/opt/${pkgname}/${_basename}.AppImage" \
+        "${pkgdir}/usr/bin/${_basename}"
+
+    # Symlink license
+    install -dm755 "${pkgdir}/usr/share/licenses/${pkgname}/"
+    ln -s \
+        "/opt/${pkgname}/LICENSE" \
+        "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
+
+    # Symlink .desktop file
+    install -dm755 "${pkgdir}/usr/share/applications/"
+    ln -s \
+        "/opt/${pkgname}/${_basename}.desktop" \
+        "${pkgdir}/usr/share/applications/${_basename}.desktop"
 }
