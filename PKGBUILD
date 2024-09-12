@@ -1,4 +1,4 @@
-# Maintainer: Jonas Geiler <aur at jonasgeiler dot com>
+# Maintainer: Jonas Geiler <aur@jonasgeiler.com>
 
 _basename=yaak
 _basedesc='The most intuitive desktop API client to organize and execute REST, GraphQL, and gRPC requests'
