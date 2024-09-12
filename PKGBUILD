@@ -51,6 +51,7 @@ build() {
     find squashfs-root/usr/share/icons -type d -empty -delete
 }
 
+# TODO: Maybe don't use /opt folder and add files everywhere directly?
 package() {
     # Add AppImage
     install -Dm755 \
