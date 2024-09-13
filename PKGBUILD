@@ -14,22 +14,23 @@ depends=(
 makedepends=(
     'nodejs'
     'npm'
-    'rust'
+    'cargo'
     'gtk3'
     'webkit2gtk-4.1'
     'protobuf'
-    'git' 'file' 'openssl' 'appmenu-gtk-module' 'libappindicator-gtk3'
-    'base-devel' 'curl' 'wget' 'dpkg' 'librsvg' 'patchelf'
-    'cairo' 'desktop-file-utils' 'gdk-pixbuf2' 'glib2' 'hicolor-icon-theme' 'libsoup' 'pango'
-    #'libappindicator-gtk3'
-    #'librsvg'
-    #'patchelf'
+    #'libappindicator-gtk3' # Yaak does not use the system tray at the moment
+    #'appmenu-gtk-module' # Yaak does not use an app menu on Linux at the moment
+    #'librsvg' # TODO: Check if this is needed
+
+    #'git' 'file' 'openssl' 'appmenu-gtk-module' 'libappindicator-gtk3'
+    #'base-devel' 'curl' 'wget' 'dpkg' 'librsvg' 'patchelf'
+    #'cairo' 'desktop-file-utils' 'gdk-pixbuf2' 'glib2' 'hicolor-icon-theme' 'libsoup' 'pango'
 )
 
 options=(
     '!lto' # Some Rust dependencies don't support Link Time Optimization
-    '!strip'
-    '!emptydirs'
+    #'!strip'
+    #'!emptydirs'
 )
 
 _app_repo='app'
@@ -71,10 +72,10 @@ prepare() {
 build() {
     cd "${srcdir}/${_app_dir}"
 
-    # Run Tauri build (for NO_STRIP see https://github.com/tauri-apps/tauri/issues/8929)
+    # Run Tauri build (we only need the deb bundle)
     YAAK_PLUGINS_DIR="${srcdir}/${_plugins_dir}" \
-    NO_STRIP=true \
-        npm run tauri build -- --ci --bundles deb --verbose
+    CI=true \
+        npm run tauri build -- --verbose --bundles deb
 }
 
 package() {
