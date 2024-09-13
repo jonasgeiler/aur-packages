@@ -1,83 +1,70 @@
 # Maintainer: Jonas Geiler <aur@jonasgeiler.com>
-pkgname='yaak'
-pkgver='2024.8.2'
-pkgrel='1'
-
-pkgdesc='The most intuitive desktop API client to organize and execute REST, GraphQL, and gRPC requests'
-arch=('x86_64' 'arm' 'armv6h' 'armv7h' 'aarch64' 'riscv64' 'i686' 'pentium4')
+pkgname=yaak
+pkgver=2024.8.2
+_plugins_commit=75df5f8094c758567395ac6cf752cd8feb33d2a6
+pkgrel=1
+pkgdesc='Simple and intuitive API client for calling REST, GraphQL, and gRPC APIs'
+arch=(aarch64 armv7h i686 pentium4 x86_64)
 url='https://yaak.app/'
-license=('MIT')
-
+license=(MIT)
 depends=(
-
+    # As reported by namcap
+    cairo
+    gcc-libs
+    gdk-pixbuf2
+    glib2
+    glibc
+    gtk3
+    hicolor-icon-theme
+    libsoup3
+    pango
+    webkit2gtk-4.1
 )
 makedepends=(
-    'nodejs'
-    'npm'
-    'cargo'
-    'gtk3'
-    'webkit2gtk-4.1'
-    'protobuf'
-    #'libappindicator-gtk3' # Yaak does not use the system tray at the moment
-    #'appmenu-gtk-module' # Yaak does not use an app menu on Linux at the moment
-    #'librsvg' # TODO: Check if this is needed
-
-    #'git' 'file' 'openssl' 'appmenu-gtk-module' 'libappindicator-gtk3'
-    #'base-devel' 'curl' 'wget' 'dpkg' 'librsvg' 'patchelf'
-    #'cairo' 'desktop-file-utils' 'gdk-pixbuf2' 'glib2' 'hicolor-icon-theme' 'libsoup' 'pango'
+    appmenu-gtk-module # Tauri
+    cargo # Rust dependencies & Tauri build
+    git # Sources
+    libappindicator-gtk3 # Tauri
+    librsvg # Tauri
+    nodejs # Custom scripts & web build
+    npm # Node dependencies & web build
+    protobuf # Yaak
 )
-
 options=(
-    '!lto' # Some Rust dependencies don't support Link Time Optimization
-    #'!strip'
-    #'!emptydirs'
+    !lto # Some Rust dependencies don't support link time optimization
+    !strip # Stripping symbols would break the output binary
+    !emptydirs # Remove empty directories from package because why not
 )
-
-_app_repo='app'
-_app_archive="${pkgname}-${pkgver}.tar.gz"
-_plugins_repo='plugins'
-_plugins_commit='75df5f8094c758567395ac6cf752cd8feb33d2a6'
-_plugins_archive="${pkgname}-${_plugins_repo}-${_plugins_commit}.tar.gz"
-_license="${pkgname}-${pkgver}.LICENSE"
-# TODO: Use license from app archive after next release
 source=(
-    "${_app_archive}::https://github.com/yaakapp/${_app_repo}/archive/v${pkgver}.tar.gz"
-    "${_plugins_archive}::https://github.com/yaakapp/${_plugins_repo}/archive/${_plugins_commit}.tar.gz"
-    "${_license}::https://raw.githubusercontent.com/yaakapp/${_repo}/master/LICENSE"
+    "yaak::git+https://github.com/yaakapp/app#tag=v${pkgver}"
+    "yaak-plugins::git+https://github.com/yaakapp/plugins#commit=${_plugins_commit}"
+    # TODO: Use license from yaak repo after next release
+    "${pkgname}-${pkgver}.LICENSE::https://raw.githubusercontent.com/yaakapp/app/master/LICENSE"
 )
-b2sums=('b9a12d8671e3af73921cd08fbf0eb503935a5ddd5884c77238fb54ca5a0c4acb046e2ae6fbdce9e7bb0758882255b650d7281f64c4d338a7704be5adbd493529'
-        'f7595c65d6e3aad3492b3781ef89003303b5b66159497c5c579942c76b9ec8c4e07f7a367b1f651587614ee742d3ac0626788dce24679f1226a5bd74536d68b6'
+b2sums=('a15241fc7230e7c0cd816d7f9db3d37b7bc5db73d412d3da884ca7e7ca68918900f71ee289cab85bdd2bd40d169fd146ef4e81555bacc1f81204be243c167475'
+        'a6992a0487f33f169c88293c535e8aa5b170909fff40b0260c04d9ae57823bdeb4c38c0ac3f1cb0e317474331d92f54577ccbcb6758253ab989ca3442be7cad6'
         '011fb406bfe4a8944efbae1f9cfa420fe421f1de3ae628802548676a1fe1318850a5f98c60cd29899efe3946dec329b6607f04917e966808f62f9e4ecaaea13b')
 
-# Dirs after extraction
-_app_dir="${_app_repo}-${pkgver}" # (No idea why there's no "v" prefix here...)
-_plugins_dir="${_plugins_repo}-${_plugins_commit}"
-
 prepare() {
-    cd "${srcdir}/${_app_dir}"
-
-    # Install Node dependencies
+    cd "${srcdir}/yaak/"
     npm ci
+    YAAK_VERSION="${pkgver}" npm run replace-version
 
-    # Install plugin-runtime Node dependencies
-    cd "${srcdir}/${_app_dir}/plugin-runtime"
+    cd "${srcdir}/yaak/plugin-runtime/"
     npm ci
-    cd "${srcdir}/${_app_dir}"
-
-    # Set version
-    YAAK_VERSION="${pkgver}" \
-        npm run replace-version
 }
 
 build() {
-    cd "${srcdir}/${_app_dir}"
-
-    # Run Tauri build (we only need the deb bundle)
-    YAAK_PLUGINS_DIR="${srcdir}/${_plugins_dir}" \
-    CI=true \
-        npm run tauri build -- --verbose --bundles deb
+    cd "${srcdir}/yaak/"
+    export YAAK_PLUGINS_DIR="${srcdir}/yaak-plugins/"
+    export CI=true
+    npm run tauri build -- --verbose --bundles deb
 }
 
 package() {
-    echo TODO
+    cp -a "${srcdir}/yaak/src-tauri/target/release/bundle/deb/yaak_${pkgver}_"*/data/usr/ \
+        "${pkgdir}/usr/"
+
+    install -Dm644 "${srcdir}/${pkgname}-${pkgver}.LICENSE" \
+        "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
 }
