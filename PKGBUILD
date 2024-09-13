@@ -2,7 +2,7 @@
 pkgname=yaak
 pkgver=2024.8.2
 _plugins_commit=75df5f8094c758567395ac6cf752cd8feb33d2a6
-pkgrel=1
+pkgrel=2
 pkgdesc='Simple and intuitive API client for calling REST, GraphQL, and gRPC APIs'
 arch=(aarch64 armv7h i686 pentium4 x86_64)
 url='https://yaak.app/'
@@ -59,12 +59,17 @@ build() {
     export YAAK_PLUGINS_DIR="${srcdir}/yaak-plugins/"
     export CI=true
     npm run tauri build -- --verbose --bundles deb
+
+    sed -e 's|Name=yaak|Name=Yaak|' \
+        -e '$aGenericName=API Client' \
+        -i "${srcdir}/yaak/src-tauri/target/release/bundle/deb/yaak_${pkgver}_"*/data/usr/share/applications/yaak-app.desktop
 }
 
 package() {
-    cp -a "${srcdir}/yaak/src-tauri/target/release/bundle/deb/yaak_${pkgver}_"*/data/usr/ \
+    cp -a \
+        "${srcdir}/yaak/src-tauri/target/release/bundle/deb/yaak_${pkgver}_"*/data/usr/ \
         "${pkgdir}/usr/"
-
-    install -Dm644 "${srcdir}/${pkgname}-${pkgver}.LICENSE" \
+    install -Dm644 \
+        "${srcdir}/${pkgname}-${pkgver}.LICENSE" \
         "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
 }
