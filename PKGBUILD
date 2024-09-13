@@ -48,7 +48,6 @@ b2sums=('a15241fc7230e7c0cd816d7f9db3d37b7bc5db73d412d3da884ca7e7ca68918900f71ee
 prepare() {
     cd "${srcdir}/yaak/"
     npm ci
-    YAAK_VERSION="${pkgver}" npm run replace-version
 
     cd "${srcdir}/yaak/plugin-runtime/"
     npm ci
@@ -56,8 +55,10 @@ prepare() {
 
 build() {
     cd "${srcdir}/yaak/"
+    export YAAK_VERSION="${pkgver}"
     export YAAK_PLUGINS_DIR="${srcdir}/yaak-plugins/"
     export CI=true
+    npm run replace-version
     npm run tauri build -- --verbose --bundles deb
 
     sed -e 's|Name=yaak|Name=Yaak|' \
