@@ -36,8 +36,8 @@ options=(
     !emptydirs # Remove empty directories from package because why not
 )
 source=(
-    "yaak::git+https://github.com/yaakapp/app#tag=v${pkgver}"
-    "yaak-plugins::git+https://github.com/yaakapp/plugins#commit=${_plugins_commit}"
+    "yaak::git+https://github.com/yaakapp/app.git#tag=v${pkgver}"
+    "yaak-plugins::git+https://github.com/yaakapp/plugins.git#commit=${_plugins_commit}"
     # TODO: Use license from yaak repo after next release
     "${pkgname}-${pkgver}.LICENSE::https://raw.githubusercontent.com/yaakapp/app/master/LICENSE"
 )
