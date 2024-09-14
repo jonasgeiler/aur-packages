@@ -12,6 +12,7 @@ depends=(
     hicolor-icon-theme
     zlib
 )
+# TODO: Add all provides and conflicts
 provides=(yaak)
 conflicts=(yaak)
 options=(
