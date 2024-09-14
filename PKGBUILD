@@ -45,19 +45,16 @@ b2sums=('a15241fc7230e7c0cd816d7f9db3d37b7bc5db73d412d3da884ca7e7ca68918900f71ee
         'a6992a0487f33f169c88293c535e8aa5b170909fff40b0260c04d9ae57823bdeb4c38c0ac3f1cb0e317474331d92f54577ccbcb6758253ab989ca3442be7cad6'
         '011fb406bfe4a8944efbae1f9cfa420fe421f1de3ae628802548676a1fe1318850a5f98c60cd29899efe3946dec329b6607f04917e966808f62f9e4ecaaea13b')
 
-prepare() {
-    cd "${srcdir}/yaak/"
-    npm ci
-
-    cd "${srcdir}/yaak/plugin-runtime/"
-    npm ci
-}
-
 build() {
-    cd "${srcdir}/yaak/"
     export YAAK_VERSION="${pkgver}"
     export YAAK_PLUGINS_DIR="${srcdir}/yaak-plugins/"
     export CI=true
+
+    cd "${srcdir}/yaak/plugin-runtime/"
+    npm ci
+
+    cd "${srcdir}/yaak/"
+    npm ci
     npm run replace-version
     npm run tauri build -- --verbose --bundles deb
 
