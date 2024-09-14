@@ -2,6 +2,25 @@
 
 > My collection of packages I maintain for the Arch User Repository.
 
+## Setup
+
+### Clone the repository
+
+```bash
+git clone git@github.com:jonasgeiler/aur-packages.git
+# or
+git clone https://github.com/jonasgeiler/aur-packages.git
+```
+
+### Add remotes for the AUR packages
+
+```bash
+git remote add yaak ssh://aur@aur.archlinux.org/yaak.git
+git remote add yaak-appimage ssh://aur@aur.archlinux.org/yaak-appimage.git
+git remote add yaak-bin ssh://aur@aur.archlinux.org/yaak-bin.git
+git remote add yaak-git ssh://aur@aur.archlinux.org/yaak-git.git
+```
+
 ## Maintenance
 
 ### Build a package
