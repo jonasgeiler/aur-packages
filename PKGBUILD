@@ -12,9 +12,14 @@ depends=(
     hicolor-icon-theme
     zlib
 )
-# TODO: Add all provides and conflicts
-provides=(yaak)
-conflicts=(yaak)
+provides=(yaak yaak-app)
+conflicts=(
+    yaak
+    yaak-app
+    yaak-app-beta
+    yaak-bin
+    yaak-git
+)
 options=(
     !strip # Stripping symbols would break the appimage
     !emptydirs # Remove empty directories from package some icon dirs are empty
