@@ -19,9 +19,14 @@ depends=(
     pango
     webkit2gtk-4.1
 )
-# TODO: Add all provides and conflicts
-provides=(yaak)
-conflicts=(yaak)
+provides=(yaak yaak-app)
+conflicts=(
+    yaak
+    yaak-app
+    yaak-app-beta
+    yaak-appimage
+    yaak-git
+)
 options=(
     !strip # Stripping symbols would break the binary
     !emptydirs # Remove empty directories from package because why not
