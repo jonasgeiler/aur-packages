@@ -30,6 +30,7 @@ makedepends=(
     npm # Node dependencies & web build
     protobuf # Yaak
 )
+# TODO: Add all provides and conflicts
 options=(
     !lto # Some Rust dependencies don't support link time optimization
     !strip # Stripping symbols would break the output binary
