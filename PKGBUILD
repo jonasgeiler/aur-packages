@@ -28,9 +28,10 @@ b2sums_x86_64=('4f69a9ace92b1844744b9a38c0c02577f466cc83fe8493ea7d6d416473279dec
                '011fb406bfe4a8944efbae1f9cfa420fe421f1de3ae628802548676a1fe1318850a5f98c60cd29899efe3946dec329b6607f04917e966808f62f9e4ecaaea13b')
 
 prepare() {
-    chmod +x "${pkgname}-${pkgver}.AppImage"
-    ./"${pkgname}-${pkgver}.AppImage" --appimage-extract > /dev/null
-    chmod -R a-x+rX squashfs-root/usr
+    cd "${srcdir}"
+    chmod +x "${srcdir}/${pkgname}-${pkgver}.AppImage"
+    "${srcdir}/${pkgname}-${pkgver}.AppImage" --appimage-extract > /dev/null
+    chmod -R a-x+rX "${srcdir}/squashfs-root/usr/"
 }
 
 build() {
@@ -38,7 +39,7 @@ build() {
         -e '$aPath=/usr/bin' \
         -e 's|Name=yaak|Name=Yaak|' \
         -e '$aGenericName=API Client' \
-        -i squashfs-root/yaak-app.desktop
+        -i "${srcdir}/squashfs-root/yaak-app.desktop"
 }
 
 package() {
