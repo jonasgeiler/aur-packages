@@ -29,6 +29,7 @@ makedepends=(
     npm # Node dependencies & web build
     protobuf # Yaak
 )
+# TODO: Add all provides and conflicts
 provides=(yaak)
 conflicts=(yaak)
 options=(
