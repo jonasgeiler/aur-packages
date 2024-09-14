@@ -43,14 +43,6 @@ source=(
 b2sums=('SKIP'
         'SKIP')
 
-prepare() {
-    cd "${srcdir}/yaak/"
-    npm ci
-
-    cd "${srcdir}/yaak/plugin-runtime/"
-    npm ci
-}
-
 pkgver() {
     cd "${srcdir}/yaak/"
     printf "0.0.0.r%s.g%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short=7 HEAD)"
@@ -60,11 +52,16 @@ pkgver() {
 }
 
 build() {
-    cd "${srcdir}/yaak/"
-    local _pkgver="${pkgver/.r/-}"
+    local _pkgver="${pkgver/.r/-r.}"
     export YAAK_VERSION="${_pkgver/.g/+g}" # Needs to be a valid semver, so we do some funky stuff
     export YAAK_PLUGINS_DIR="${srcdir}/yaak-plugins/"
     export CI=true
+
+    cd "${srcdir}/yaak/plugin-runtime/"
+    npm ci
+
+    cd "${srcdir}/yaak/"
+    npm ci
     npm run replace-version
     npm run tauri build -- --verbose --bundles deb
 
