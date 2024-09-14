@@ -1,6 +1,6 @@
 # Maintainer: Jonas Geiler <aur@jonasgeiler.com>
 pkgname=yaak-git
-pkgver=0.0.0.r1135.gdb416ce
+pkgver=2024.9.0.beta.3.r0.gf831827
 pkgrel=1
 pkgdesc='Simple and intuitive API client for calling REST, GraphQL, and gRPC APIs (Development version)'
 arch=(aarch64 armv7h i686 pentium4 x86_64)
@@ -45,15 +45,21 @@ b2sums=('SKIP'
 
 pkgver() {
     cd "${srcdir}/yaak/"
-    printf "0.0.0.r%s.g%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short=7 HEAD)"
+    # The tags don't belong to a branch so we have to get the latest tag across all branches
+    git describe --long --tags --abbrev=7 "$(git rev-list --tags --max-count=1)" |
+        sed -e 's/^v//' -e 's/-\([[:digit:]]\+\)-\(g[[:alnum:]]\{7\}\)$/.r\1.\2/' -e 's/-/./g'
+}
 
-    # TODO: For some reason `git describe` doesn't work?
-    #git describe --long --tags --abbrev=7 2> /dev/null | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g'
+_semver() {
+    cd "${srcdir}/yaak/"
+    # Same as above but with a different sed replacement to make the output valid semver
+    git describe --long --tags --abbrev=7 "$(git rev-list --tags --max-count=1)" |
+        sed -e 's/^v//' -e 's/-\([[:digit:]]\+\)-\(g[[:alnum:]]\{7\}\)$/-r.\1+\2/'
 }
 
 build() {
-    local _pkgver="${pkgver/.r/-r.}"
-    export YAAK_VERSION="${_pkgver/.g/+g}" # Needs to be a valid semver, so we do some funky stuff
+    local _semver; _semver="$(_semver)"
+    export YAAK_VERSION="${_semver}"
     export YAAK_PLUGINS_DIR="${srcdir}/yaak-plugins/"
     export CI=true
 
@@ -67,12 +73,13 @@ build() {
 
     sed -e 's|Name=yaak|Name=Yaak|' \
         -e '$aGenericName=API Client' \
-        -i "${srcdir}/yaak/src-tauri/target/release/bundle/deb/yaak_"*/data/usr/share/applications/yaak-app.desktop
+        -i "${srcdir}/yaak/src-tauri/target/release/bundle/deb/yaak_${_semver}_"*/data/usr/share/applications/yaak-app.desktop
 }
 
 package() {
+    local _semver; _semver="$(_semver)"
     cp -a \
-        "${srcdir}/yaak/src-tauri/target/release/bundle/deb/yaak_"*/data/usr/ \
+        "${srcdir}/yaak/src-tauri/target/release/bundle/deb/yaak_${_semver}_"*/data/usr/ \
         "${pkgdir}/usr/"
     install -Dm644 \
         "${srcdir}/yaak/LICENSE" \
