@@ -1,7 +1,17 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "github>jonasgeiler/renovate-config",
-    "schedule:daily"
+    "github>jonasgeiler/renovate-config"
+  ],
+  "packageRules": [
+    {
+      "matchFileNames": [
+        "**/PKGBUILD"
+      ],
+      "extends": [
+        "schedule:daily",
+        ":automergeDisabled"
+      ]
+    }
   ]
 }
