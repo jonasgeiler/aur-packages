@@ -29,9 +29,14 @@ makedepends=(
     npm # Node dependencies & web build
     protobuf # Yaak
 )
-# TODO: Add all provides and conflicts
-provides=(yaak)
-conflicts=(yaak)
+provides=(yaak yaak-app)
+conflicts=(
+    yaak
+    yaak-app
+    yaak-app-beta
+    yaak-appimage
+    yaak-bin
+)
 options=(
     !lto # Some Rust dependencies don't support link time optimization
     !strip # Stripping symbols would break the output binary
