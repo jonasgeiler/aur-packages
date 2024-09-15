@@ -1,5 +1,0 @@
-[yaak]
-source = "github"
-github = "yaakapp/app"
-use_latest_release = true
-prefix = "v"
