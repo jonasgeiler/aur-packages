@@ -2,6 +2,18 @@
 
 > My collection of packages I maintain for the Arch User Repository.
 
+In this repository, I keep the `PKGBUILD` files and other necessary files for
+the packages I maintain in the Arch User Repository (AUR). This repository is
+used to keep track of changes to the packages and to make it easier to monitor
+and update them all at once.
+
+## Packages
+
+- [yaak](https://aur.archlinux.org/packages/yaak/)
+- [yaak-appimage](https://aur.archlinux.org/packages/yaak-appimage/)
+- [yaak-bin](https://aur.archlinux.org/packages/yaak-bin/)
+- [yaak-git](https://aur.archlinux.org/packages/yaak-git/)
+
 ## Setup
 
 ### Clone the repository
@@ -60,11 +72,10 @@ git subtree pull --prefix yaak-git yaak-git master
    ```bash
    namcap -i *.pkg.tar.zst
    ```
-6. (Optional) Install the package:
+6. (Optional) Install the package and test it out:
    ```bash
    makepkg --install
    ```
-   And test it out.
 7. Update the `.SRCINFO` file:
    ```bash
    makepkg --printsrcinfo > .SRCINFO
@@ -72,7 +83,7 @@ git subtree pull --prefix yaak-git yaak-git master
 8. Stage the changes, commit and push them to this repository:
    ```bash
    git add PKGBUILD .SRCINFO
-   git commit -m 'chore: bumped version to x.y.z'
+   git commit -m 'feat(<pkg>): updated to x.y.z'
    git push
    ```
 9. Push the changes to the AUR repository:
