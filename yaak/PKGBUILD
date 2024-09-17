@@ -1,9 +1,11 @@
 # Maintainer: Jonas Geiler <aur@jonasgeiler.com>
 pkgname=yaak
 # renovate: datasource=github-releases depName=yaakapp/app
-pkgver=2024.8.2
-_plugins_commit=75df5f8094c758567395ac6cf752cd8feb33d2a6
-pkgrel=3
+pkgver=2024.9.1
+# should be the same commit hash used in the GitHub Actions run for the current release tag
+# (check the step where it checks out the plugins repository)
+_plugins_commit=92ac91733ea2aa647504db70dee42d7495d870cc
+pkgrel=1
 pkgdesc='Simple and intuitive API client for calling REST, GraphQL, and gRPC APIs'
 arch=(aarch64 armv7h i686 pentium4 x86_64)
 url='https://yaak.app/'
@@ -47,12 +49,9 @@ options=(
 source=(
 	"yaak::git+https://github.com/yaakapp/app.git#tag=v${pkgver}"
 	"yaak-plugins::git+https://github.com/yaakapp/plugins.git#commit=${_plugins_commit}"
-	# TODO: Use license from yaak repo after next release
-	"${pkgname}-${pkgver}.LICENSE::https://raw.githubusercontent.com/yaakapp/app/b616c5d78f5ac9aa721b847e755ada2f87353f4d/LICENSE"
 )
-b2sums=('a15241fc7230e7c0cd816d7f9db3d37b7bc5db73d412d3da884ca7e7ca68918900f71ee289cab85bdd2bd40d169fd146ef4e81555bacc1f81204be243c167475'
-	'a6992a0487f33f169c88293c535e8aa5b170909fff40b0260c04d9ae57823bdeb4c38c0ac3f1cb0e317474331d92f54577ccbcb6758253ab989ca3442be7cad6'
-	'011fb406bfe4a8944efbae1f9cfa420fe421f1de3ae628802548676a1fe1318850a5f98c60cd29899efe3946dec329b6607f04917e966808f62f9e4ecaaea13b')
+b2sums=('1860969e3cf28570052efc163f3dc57d18256b4d5c60fcef1baa107bdc7485de7dc9d5eb3c144118dbeac73b6a7e13bc67f9173f350689e9408e2475792efd80'
+	'8bbce3928bb0286ecaa9862ede34c00b8cc63c6d98b339a8c1b7c55392ba74abb793b9ef9e343d48247cbd2af540e0d290e73cacafbffe5648cc8f377758e76e')
 
 build() {
 	export YAAK_VERSION="${pkgver}"
@@ -69,7 +68,7 @@ build() {
 
 	sed -e 's|Name=yaak|Name=Yaak|' \
 		-e '$aGenericName=API Client' \
-		-i "${srcdir}/yaak/src-tauri/target/release/bundle/deb/yaak_${pkgver}_"*/data/usr/share/applications/yaak-app.desktop
+		-i "${srcdir}/yaak/src-tauri/target/release/bundle/deb/yaak_${pkgver}_"*/data/usr/share/applications/yaak.desktop
 }
 
 package() {
@@ -77,6 +76,6 @@ package() {
 		"${srcdir}/yaak/src-tauri/target/release/bundle/deb/yaak_${pkgver}_"*/data/usr/ \
 		"${pkgdir}/usr/"
 	install -Dm644 \
-		"${srcdir}/${pkgname}-${pkgver}.LICENSE" \
+		"${srcdir}/yaak/LICENSE" \
 		"${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
 }

@@ -1,6 +1,6 @@
 # Maintainer: Jonas Geiler <aur@jonasgeiler.com>
 pkgname=yaak-git
-pkgver=2024.9.0.beta.3.r0.gf831827
+pkgver=2024.10.0.beta.2.r0.g4a79a67
 pkgrel=1
 pkgdesc='Simple and intuitive API client for calling REST, GraphQL, and gRPC APIs (Development version)'
 arch=(aarch64 armv7h i686 pentium4 x86_64)
@@ -79,7 +79,7 @@ build() {
 
 	sed -e 's|Name=yaak|Name=Yaak|' \
 		-e '$aGenericName=API Client' \
-		-i "${srcdir}/yaak/src-tauri/target/release/bundle/deb/yaak_${_semver}_"*/data/usr/share/applications/yaak-app.desktop
+		-i "${srcdir}/yaak/src-tauri/target/release/bundle/deb/yaak_${_semver}_"*/data/usr/share/applications/yaak.desktop
 }
 
 package() {
