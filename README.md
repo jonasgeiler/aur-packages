@@ -59,12 +59,16 @@ git subtree pull --prefix yaak-git yaak-git master
    ```bash
    namcap -i PKGBUILD
    ```
-4. Try a clean build:
+4. Try building the package:
    ```bash
    makepkg --force --cleanbuild
    ```
+   > TIP: Sometimes a clean build can take a long time. If you're in a hurry,
+   > you can rebuild from an already compiled package by removing the
+   > `--cleanbuild` flag, but generally it is safer to build from scratch.
+
    Alternatively, use `extra-x86_64-build` from the `devtools` package to try 
-   building in a clean chroot:
+   building in a clean chroot, which often reveals missing build dependencies:
    ```bash
    extra-x86_64-build -c
    ```
