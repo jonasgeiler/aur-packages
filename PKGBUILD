@@ -1,7 +1,7 @@
 # Maintainer: Jonas Geiler <aur@jonasgeiler.com>
 pkgname=yaak
 # renovate: datasource=github-releases depName=yaakapp/app
-pkgver=2024.9.1
+pkgver=2024.10.0
 # should be the same commit hash used in the GitHub Actions run for the current release tag
 # (check the step where it checks out the plugins repository)
 _plugins_commit=92ac91733ea2aa647504db70dee42d7495d870cc
@@ -50,8 +50,8 @@ source=(
 	"yaak::git+https://github.com/yaakapp/app.git#tag=v${pkgver}"
 	"yaak-plugins::git+https://github.com/yaakapp/plugins.git#commit=${_plugins_commit}"
 )
-b2sums=('1860969e3cf28570052efc163f3dc57d18256b4d5c60fcef1baa107bdc7485de7dc9d5eb3c144118dbeac73b6a7e13bc67f9173f350689e9408e2475792efd80'
-	'8bbce3928bb0286ecaa9862ede34c00b8cc63c6d98b339a8c1b7c55392ba74abb793b9ef9e343d48247cbd2af540e0d290e73cacafbffe5648cc8f377758e76e')
+b2sums=('7701eb90ac6490e3ba911fffcfb12d38baa050420997d809ec8ec363bdae3732a0c5fd98938f51a201f9b0d3163ff8f659ce2a420eef198c2c40b49dfbfd58c2'
+        '8bbce3928bb0286ecaa9862ede34c00b8cc63c6d98b339a8c1b7c55392ba74abb793b9ef9e343d48247cbd2af540e0d290e73cacafbffe5648cc8f377758e76e')
 
 build() {
 	export YAAK_VERSION="${pkgver}"
