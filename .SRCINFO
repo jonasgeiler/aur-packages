@@ -1,6 +1,6 @@
 pkgbase = yaak-appimage
 	pkgdesc = Simple and intuitive API client for calling REST, GraphQL, and gRPC APIs (AppImage version)
-	pkgver = 2024.9.1
+	pkgver = 2024.10.0
 	pkgrel = 1
 	url = https://yaak.app/
 	arch = x86_64
@@ -17,9 +17,9 @@ pkgbase = yaak-appimage
 	conflicts = yaak-git
 	options = !strip
 	options = !emptydirs
-	source_x86_64 = yaak-appimage-2024.9.1.AppImage::https://github.com/yaakapp/app/releases/download/v2024.9.1/yaak_2024.9.1_amd64.AppImage
-	source_x86_64 = yaak-appimage-2024.9.1.LICENSE::https://raw.githubusercontent.com/yaakapp/app/refs/tags/v2024.9.1/LICENSE
-	b2sums_x86_64 = 7f0b66ef7dfdbd8cdf9e6cf703c1e54024e724c4d253b0540b9db8857ec91a82dbfbfaf97233384319a5852f5a3843c21861359e37978cfdc53d161fe6441a41
+	source_x86_64 = yaak-appimage-2024.10.0.AppImage::https://github.com/yaakapp/app/releases/download/v2024.10.0/yaak_2024.10.0_amd64.AppImage
+	source_x86_64 = yaak-appimage-2024.10.0.LICENSE::https://raw.githubusercontent.com/yaakapp/app/refs/tags/v2024.10.0/LICENSE
+	b2sums_x86_64 = 1edde9536f45245d70760696d660a84b8292ea07118b8a3cb7233893c495f4b7ecf5240ae63188d7b472d6a904b428a067cc30dde4a9054832a509d1e0fb261d
 	b2sums_x86_64 = 011fb406bfe4a8944efbae1f9cfa420fe421f1de3ae628802548676a1fe1318850a5f98c60cd29899efe3946dec329b6607f04917e966808f62f9e4ecaaea13b
 
 pkgname = yaak-appimage
