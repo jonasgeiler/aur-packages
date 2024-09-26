@@ -14,9 +14,9 @@ and update them all at once.
 - [yaak-bin](https://aur.archlinux.org/packages/yaak-bin/)
 - [yaak-git](https://aur.archlinux.org/packages/yaak-git/)
 
-## Setup
+## Development Setup
 
-### Clone the repository
+Clone this repository:
 
 ```bash
 git clone git@github.com:jonasgeiler/aur-packages.git
@@ -24,7 +24,7 @@ git clone git@github.com:jonasgeiler/aur-packages.git
 git clone https://github.com/jonasgeiler/aur-packages.git
 ```
 
-### Add remotes for the AUR packages
+And then add remotes for all AUR packages:
 
 ```bash
 git remote add yaak ssh://aur@aur.archlinux.org/yaak.git
@@ -33,19 +33,14 @@ git remote add yaak-bin ssh://aur@aur.archlinux.org/yaak-bin.git
 git remote add yaak-git ssh://aur@aur.archlinux.org/yaak-git.git
 ```
 
-### Update subtrees
-
-```bash
-git subtree pull --prefix yaak yaak master
-git subtree pull --prefix yaak-appimage yaak-appimage master
-git subtree pull --prefix yaak-bin yaak-bin master
-git subtree pull --prefix yaak-git yaak-git master
-```
-
 ## Updating a package
 
+All usages of Bash variables (`${var}`) in the following steps are
+placeholders and should be replaced with the actual values.
+
 1. Bump the `pkgver` to the new version and reset `pkgrel` to `1` in the
-   `PKGBUILD` file. Also update the `pkgdesc` and other info if necessary.
+   `${package}/PKGBUILD` file. Also update the `pkgdesc` and other info if
+   necessary.
    Make sure to read the release notes or changelog of the package to see if
    there are any breaking changes, new dependencies or anything else that needs
    to be changed.
@@ -53,15 +48,15 @@ git subtree pull --prefix yaak-git yaak-git master
    > of information about new dependencies, commands and other build steps.
 2. Update the checksums:
    ```bash
-   updpkgsums
+   updpkgsums ${package}/PKGBUILD
    ```
 3. Check `PKGBUILD` for errors:
    ```bash
-   namcap -i PKGBUILD
+   namcap -i ${package}/PKGBUILD
    ```
 4. Try building the package:
    ```bash
-   makepkg --force --cleanbuild
+   makepkg --dir ${package} --force --cleanbuild
    ```
    > TIP: Sometimes a clean build can take a long time. If you're in a hurry,
    > you can rebuild from an already compiled package by removing the
@@ -70,36 +65,82 @@ git subtree pull --prefix yaak-git yaak-git master
    Alternatively, use `extra-x86_64-build` from the `devtools` package to try 
    building in a clean chroot, which often reveals missing build dependencies:
    ```bash
+   cd ${package}
    extra-x86_64-build -c
+   cd ..
    ```
 5. Check the package for errors:
    ```bash
-   namcap -i *.pkg.tar.zst
+   namcap -i ${package}/${package}-${version}-${arch}.pkg.tar.zst
    ```
 6. (Optional) Install the package and test it out:
    ```bash
-   makepkg --install
+   makepkg --dir ${package} --install
    ```
-7. Update the `.SRCINFO` file:
+7. Update the `${package}/.SRCINFO` file:
    ```bash
-   makepkg --printsrcinfo > .SRCINFO
+   makepkg --dir ${package} --printsrcinfo > ${package}/.SRCINFO
    ```
 8. Stage the changes, commit and push them to this repository:
    ```bash
    git add PKGBUILD .SRCINFO
-   git commit -m 'feat(<pkg>): updated to x.y.z'
+   git commit -m "feat(${package}): updated to ${major}.${minor}.${patch}"
    git push
    ```
 9. Push the changes to the AUR repository:
    ```bash
-   git subtree push --prefix yaak yaak master
-   # or
-   git subtree push --prefix yaak-appimage yaak-appimage master
-   # or
-   git subtree push --prefix yaak-bin yaak-bin master
-   # or
-   git subtree push --prefix yaak-git yaak-git master
+   git subtree push --prefix ${package} ${package} master
    ```
+
+## Bash Snippets
+
+A little collection of copy-paste snippets for various tasks. Run these from the
+root of the repository.
+
+### Pull new changes of all packages
+
+```bash
+git subtree pull --prefix yaak yaak master
+git subtree pull --prefix yaak-appimage yaak-appimage master
+git subtree pull --prefix yaak-bin yaak-bin master
+git subtree pull --prefix yaak-git yaak-git master
+```
+
+### Update checksums of all packages
+
+```bash
+updpkgsums yaak/PKGBUILD
+updpkgsums yaak-appimage/PKGBUILD
+updpkgsums yaak-bin/PKGBUILD
+updpkgsums yaak-git/PKGBUILD
+```
+
+### Check `PKGBUILD` of all packages
+
+```bash
+namcap -i yaak/PKGBUILD
+namcap -i yaak-appimage/PKGBUILD
+namcap -i yaak-bin/PKGBUILD
+namcap -i yaak-git/PKGBUILD
+```
+
+### Update `.SRCINFO` of all packages
+
+```bash
+makepkg --dir yaak --printsrcinfo > yaak/.SRCINFO
+makepkg --dir yaak-appimage --printsrcinfo > yaak-appimage/.SRCINFO
+makepkg --dir yaak-bin --printsrcinfo > yaak-bin/.SRCINFO
+makepkg --dir yaak-git --printsrcinfo > yaak-git/.SRCINFO
+```
+
+### Push changes of all packages
+
+```bash
+git subtree push --prefix yaak yaak master
+git subtree push --prefix yaak-appimage yaak-appimage master
+git subtree push --prefix yaak-bin yaak-bin master
+git subtree push --prefix yaak-git yaak-git master
+```
 
 ## Reference Links
 
