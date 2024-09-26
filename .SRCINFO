@@ -30,7 +30,6 @@ pkgbase = yaak-git
 	provides = yaak
 	provides = yaak-app
 	conflicts = yaak
-	conflicts = yaak-app
 	conflicts = yaak-app-beta
 	conflicts = yaak-appimage
 	conflicts = yaak-bin
