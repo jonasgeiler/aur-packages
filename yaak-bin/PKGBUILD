@@ -27,6 +27,7 @@ conflicts=(
 	yaak-appimage
 	yaak-git
 )
+replaces=(yaak-app)
 options=(
 	!strip     # Stripping symbols would break the binary
 	!emptydirs # Remove empty directories from package because why not
