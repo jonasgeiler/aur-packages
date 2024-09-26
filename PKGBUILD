@@ -1,4 +1,5 @@
 # Maintainer: Jonas Geiler <aur@jonasgeiler.com>
+# Maintainer: SoftExpert <softexpert at gmail dot com>
 pkgname=yaak-bin
 # renovate: datasource=github-releases depName=yaakapp/app
 pkgver=2024.10.1
