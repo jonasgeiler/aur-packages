@@ -1,6 +1,6 @@
 # Maintainer: Jonas Geiler <aur@jonasgeiler.com>
 pkgname=yaak-git
-pkgver=2024.10.0.beta.2.r0.g4a79a67
+pkgver=2024.10.1.r0.g974425a
 pkgrel=1
 pkgdesc='Simple and intuitive API client for calling REST, GraphQL, and gRPC APIs (Development version)'
 arch=(aarch64 armv7h i686 pentium4 x86_64)
@@ -46,7 +46,7 @@ source=(
 	"yaak-plugins::git+https://github.com/yaakapp/plugins.git"
 )
 b2sums=('SKIP'
-	'SKIP')
+        'SKIP')
 
 pkgver() {
 	cd "${srcdir}/yaak/"
@@ -67,9 +67,6 @@ build() {
 	export YAAK_VERSION="${_semver}"
 	export YAAK_PLUGINS_DIR="${srcdir}/yaak-plugins/"
 	export CI=true
-
-	cd "${srcdir}/yaak/plugin-runtime/"
-	npm ci
 
 	cd "${srcdir}/yaak/"
 	npm ci
