@@ -35,7 +35,6 @@ makedepends=(
 )
 provides=(yaak-app)
 conflicts=(
-	yaak-app
 	yaak-app-beta
 	yaak-appimage
 	yaak-bin

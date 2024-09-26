@@ -16,7 +16,6 @@ depends=(
 provides=(yaak yaak-app)
 conflicts=(
 	yaak
-	yaak-app
 	yaak-app-beta
 	yaak-bin
 	yaak-git

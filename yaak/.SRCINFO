@@ -28,7 +28,6 @@ pkgbase = yaak
 	depends = pango
 	depends = webkit2gtk-4.1
 	provides = yaak-app
-	conflicts = yaak-app
 	conflicts = yaak-app-beta
 	conflicts = yaak-appimage
 	conflicts = yaak-bin
