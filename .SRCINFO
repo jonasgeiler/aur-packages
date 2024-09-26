@@ -21,6 +21,7 @@ pkgbase = yaak-bin
 	conflicts = yaak-app-beta
 	conflicts = yaak-appimage
 	conflicts = yaak-git
+	replaces = yaak-app
 	options = !strip
 	options = !emptydirs
 	source_x86_64 = yaak-bin-2024.10.1.deb::https://github.com/yaakapp/app/releases/download/v2024.10.1/yaak_2024.10.1_amd64.deb
