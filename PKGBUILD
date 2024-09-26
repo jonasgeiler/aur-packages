@@ -1,4 +1,5 @@
 # Maintainer: Jonas Geiler <aur@jonasgeiler.com>
+# Maintainer: SoftExpert <softexpert at gmail dot com>
 pkgname=yaak-git
 pkgver=2024.10.1.r0.g974425a
 pkgrel=1
