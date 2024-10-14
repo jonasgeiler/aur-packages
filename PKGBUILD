@@ -2,7 +2,7 @@
 # Maintainer: SoftExpert <softexpert at gmail dot com>
 pkgname=yaak-bin
 # renovate: datasource=github-releases depName=yaakapp/app
-pkgver=2024.10.1
+pkgver=2024.11.0
 pkgrel=1
 pkgdesc='Simple and intuitive API client for calling REST, GraphQL, and gRPC APIs (Pre-compiled version)'
 arch=(x86_64)
@@ -37,7 +37,7 @@ source_x86_64=(
 	"${pkgname}-${pkgver}.deb::https://github.com/yaakapp/app/releases/download/v${pkgver}/yaak_${pkgver}_amd64.deb"
 	"${pkgname}-${pkgver}.LICENSE::https://raw.githubusercontent.com/yaakapp/app/refs/tags/v${pkgver}/LICENSE"
 )
-b2sums_x86_64=('791e7e4ccb73ab6673c45f352ccc874149af9654356272ba2446f74b649940e0a1cff3a3b0fab964ce742559da0f2c50dad4ae24942b8691c62380109df65ed6'
+b2sums_x86_64=('54fbbe579e7637073b109e61a891cdfe0682b4668fb8539d237c79241ad625c867b94e33a55db8ad89d5738dd9aec1f7ac918e3366fb231531f574f88bb43fd2'
                '011fb406bfe4a8944efbae1f9cfa420fe421f1de3ae628802548676a1fe1318850a5f98c60cd29899efe3946dec329b6607f04917e966808f62f9e4ecaaea13b')
 
 prepare() {
