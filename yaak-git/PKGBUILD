@@ -1,7 +1,7 @@
 # Maintainer: Jonas Geiler <aur@jonasgeiler.com>
 # Maintainer: SoftExpert <softexpert at gmail dot com>
 pkgname=yaak-git
-pkgver=2024.10.1.r0.g974425a
+pkgver=2024.11.2.r0.g6f50f35
 pkgrel=1
 pkgdesc='Simple and intuitive API client for calling REST, GraphQL, and gRPC APIs (Development version)'
 arch=(aarch64 armv7h i686 pentium4 x86_64)
@@ -71,6 +71,7 @@ build() {
 
 	cd "${srcdir}/yaak/"
 	npm ci
+	npm install @yaakapp/cli
 	npm run replace-version
 	npm run tauri build -- --verbose --bundles deb
 

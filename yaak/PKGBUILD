@@ -6,7 +6,7 @@ pkgver=2024.11.2
 # should be the same commit hash used in the GitHub Actions run for the current release tag
 # (check the step where it checks out the plugins repository)
 _plugins_commit=9d24aefba186d1c3ebec6eeec90eba2a66435a98
-pkgrel=1
+pkgrel=2
 pkgdesc='Simple and intuitive API client for calling REST, GraphQL, and gRPC APIs'
 arch=(aarch64 armv7h i686 pentium4 x86_64)
 url='https://yaak.app/'
@@ -60,6 +60,7 @@ build() {
 
 	cd "${srcdir}/yaak/"
 	npm ci
+	npm install @yaakapp/cli
 	npm run replace-version
 	npm run tauri build -- --verbose --bundles deb
 

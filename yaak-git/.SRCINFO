@@ -1,6 +1,6 @@
 pkgbase = yaak-git
 	pkgdesc = Simple and intuitive API client for calling REST, GraphQL, and gRPC APIs (Development version)
-	pkgver = 2024.10.1.r0.g974425a
+	pkgver = 2024.11.2.r0.g6f50f35
 	pkgrel = 1
 	url = https://yaak.app/
 	arch = aarch64
