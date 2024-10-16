@@ -1,10 +1,10 @@
 # Maintainer: Jonas Geiler <aur@jonasgeiler.com>
 pkgname=yaak
 # renovate: datasource=github-releases depName=yaakapp/app
-pkgver=2024.11.0
+pkgver=2024.11.2
 # should be the same commit hash used in the GitHub Actions run for the current release tag
 # (check the step where it checks out the plugins repository)
-_plugins_commit=61543fb10f97607b2d8488a60ca986842ef12a35
+_plugins_commit=9d24aefba186d1c3ebec6eeec90eba2a66435a98
 pkgrel=1
 pkgdesc='Simple and intuitive API client for calling REST, GraphQL, and gRPC APIs'
 arch=(aarch64 armv7h i686 pentium4 x86_64)
@@ -49,8 +49,8 @@ source=(
 	"yaak::git+https://github.com/yaakapp/app.git#tag=v${pkgver}"
 	"yaak-plugins::git+https://github.com/yaakapp/plugins.git#commit=${_plugins_commit}"
 )
-b2sums=('5576a4e91aaee786a389eabc5e46642826a3cba1136511abba4a0c8dea61da8812f1e630a4779489fdc579992bf962539c57e656926b9fc965714859d4dd6fd4'
-        '094ebd6a5d41a4977aadd9d6f05d01862495532105591e57bceaed2a005754de508e4090c494b83ec2d528a76968b79f92ed5581e3cc0fd87cb158f58bbb684a')
+b2sums=('32d15643c3b770b4e1d739854060c2957e3f5abf768cf74f5f7181cfa94a1fe4b1401d6c3d1232cba8b5d31ae546281920874490b755b80dfb3fa5531e224e44'
+        '862b6920177f90b9b13e3737cfc57f415050a1e40257bd298713488df71b03d606c253e1d2b4d20bf51314ce075a6349aa7338a9e76174df122be856d2120b6a')
 
 build() {
 	export YAAK_VERSION="${pkgver}"
