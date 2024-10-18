@@ -1,6 +1,6 @@
 pkgbase = yaak
 	pkgdesc = Simple and intuitive API client for calling REST, GraphQL, and gRPC APIs
-	pkgver = 2024.11.2
+	pkgver = 2024.11.3
 	pkgrel = 2
 	url = https://yaak.app/
 	arch = aarch64
@@ -35,9 +35,9 @@ pkgbase = yaak
 	options = !lto
 	options = !strip
 	options = !emptydirs
-	source = yaak::git+https://github.com/yaakapp/app.git#tag=v2024.11.2
+	source = yaak::git+https://github.com/yaakapp/app.git#tag=v2024.11.3
 	source = yaak-plugins::git+https://github.com/yaakapp/plugins.git#commit=9d24aefba186d1c3ebec6eeec90eba2a66435a98
-	b2sums = 32d15643c3b770b4e1d739854060c2957e3f5abf768cf74f5f7181cfa94a1fe4b1401d6c3d1232cba8b5d31ae546281920874490b755b80dfb3fa5531e224e44
+	b2sums = fb937fb90e931a7693cdea9ad1112b779075f0c293fd0ae25118ceccdfde04881ee3ce49c9c3e74fbcbe8e220cd0a000d8234c06d93c7d706c185c0ed46b2a19
 	b2sums = 862b6920177f90b9b13e3737cfc57f415050a1e40257bd298713488df71b03d606c253e1d2b4d20bf51314ce075a6349aa7338a9e76174df122be856d2120b6a
 
 pkgname = yaak
