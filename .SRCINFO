@@ -1,5 +1,5 @@
 pkgbase = supercronic-git
-	pkgdesc = A crontab-compatible job runner, designed specifically to run in containers
+	pkgdesc = A crontab-compatible job runner, designed specifically to run in containers (Development version)
 	pkgver = 0.2.33.r0.gcca6b3a
 	pkgrel = 1
 	url = https://github.com/aptible/supercronic

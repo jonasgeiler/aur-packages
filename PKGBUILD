@@ -3,7 +3,7 @@
 pkgname=supercronic-git
 pkgver=0.2.33.r0.gcca6b3a
 pkgrel=1
-pkgdesc='A crontab-compatible job runner, designed specifically to run in containers'
+pkgdesc='A crontab-compatible job runner, designed specifically to run in containers (Development version)'
 arch=(aarch64 arm armv6h armv7h i686 pentium4 riscv64 x86_64)
 url='https://github.com/aptible/supercronic'
 license=(MIT)
