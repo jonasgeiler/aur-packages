@@ -13,6 +13,7 @@ and update them all at once.
 - [yaak-appimage](https://aur.archlinux.org/packages/yaak-appimage/)
 - [yaak-bin](https://aur.archlinux.org/packages/yaak-bin/)
 - [yaak-git](https://aur.archlinux.org/packages/yaak-git/)
+- [supercronic-bin](https://aur.archlinux.org/packages/supercronic-bin/)
 
 ## Development Setup
 
@@ -31,6 +32,7 @@ git remote add yaak ssh://aur@aur.archlinux.org/yaak.git
 git remote add yaak-appimage ssh://aur@aur.archlinux.org/yaak-appimage.git
 git remote add yaak-bin ssh://aur@aur.archlinux.org/yaak-bin.git
 git remote add yaak-git ssh://aur@aur.archlinux.org/yaak-git.git
+git remote add supercronic-bin ssh://aur@aur.archlinux.org/supercronic-bin.git
 ```
 
 ## Updating a package
@@ -104,6 +106,7 @@ git subtree pull --prefix yaak yaak master
 git subtree pull --prefix yaak-appimage yaak-appimage master
 git subtree pull --prefix yaak-bin yaak-bin master
 git subtree pull --prefix yaak-git yaak-git master
+git subtree pull --prefix supercronic-bin supercronic-bin master
 ```
 
 ### Update checksums of all packages
@@ -113,6 +116,7 @@ updpkgsums yaak/PKGBUILD
 updpkgsums yaak-appimage/PKGBUILD
 updpkgsums yaak-bin/PKGBUILD
 updpkgsums yaak-git/PKGBUILD
+updpkgsums supercronic-bin/PKGBUILD
 ```
 
 ### Check `PKGBUILD` of all packages
@@ -122,6 +126,7 @@ namcap -i yaak/PKGBUILD
 namcap -i yaak-appimage/PKGBUILD
 namcap -i yaak-bin/PKGBUILD
 namcap -i yaak-git/PKGBUILD
+namcap -i supercronic-bin/PKGBUILD
 ```
 
 ### Update `.SRCINFO` of all packages
@@ -131,6 +136,7 @@ makepkg --dir yaak --printsrcinfo > yaak/.SRCINFO
 makepkg --dir yaak-appimage --printsrcinfo > yaak-appimage/.SRCINFO
 makepkg --dir yaak-bin --printsrcinfo > yaak-bin/.SRCINFO
 makepkg --dir yaak-git --printsrcinfo > yaak-git/.SRCINFO
+makepkg --dir supercronic-bin --printsrcinfo > supercronic-bin/.SRCINFO
 ```
 
 ### Push changes of all packages
@@ -140,6 +146,7 @@ git subtree push --prefix yaak yaak master
 git subtree push --prefix yaak-appimage yaak-appimage master
 git subtree push --prefix yaak-bin yaak-bin master
 git subtree push --prefix yaak-git yaak-git master
+git subtree push --prefix supercronic-bin supercronic-bin master
 ```
 
 ## Reference Links
@@ -164,3 +171,7 @@ git subtree push --prefix yaak-git yaak-git master
 - https://aur.archlinux.org/cgit/aur.git/tree/PKGBUILD?h=freecad-appimage
 - https://aur.archlinux.org/cgit/aur.git/tree/PKGBUILD?h=voicevox-appimage
 - https://aur.archlinux.org/cgit/aur.git/tree/PKGBUILD?h=citra-appimage
+
+### PKGBUILDs of multi-arch Golang packages
+
+- https://aur.archlinux.org/packages/traefik-bin
