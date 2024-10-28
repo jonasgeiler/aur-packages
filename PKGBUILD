@@ -3,7 +3,7 @@ pkgname=supercronic-bin
 # renovate: datasource=github-releases depName=aptible/supercronic
 pkgver=0.2.33
 pkgrel=1
-pkgdesc='A crontab-compatible job runner, designed specifically to run in containers'
+pkgdesc='A crontab-compatible job runner, designed specifically to run in containers (Pre-compiled version)'
 arch=(aarch64 armv7h i686 x86_64)
 url='https://github.com/aptible/supercronic'
 license=(MIT)
