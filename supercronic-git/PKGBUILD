@@ -16,6 +16,10 @@ conflicts=(
 	supercronic
 	supercronic-bin
 )
+options=(
+	!strip     # Stripping symbols would break the output binary
+	!emptydirs # Remove empty directories from package because why not
+)
 source=('supercronic::git+https://github.com/aptible/supercronic.git')
 b2sums=('SKIP')
 
