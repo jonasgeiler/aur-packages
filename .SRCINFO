@@ -17,6 +17,8 @@ pkgbase = supercronic-git
 	provides = supercronic
 	conflicts = supercronic
 	conflicts = supercronic-bin
+	options = !strip
+	options = !emptydirs
 	source = supercronic::git+https://github.com/aptible/supercronic.git
 	b2sums = SKIP
 
