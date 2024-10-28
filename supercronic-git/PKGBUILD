@@ -1,32 +1,51 @@
+# Maintainer: Jonas Geiler <aur@jonasgeiler.com>
+# Contributor: krevedko
 pkgname=supercronic-git
-__gitroot=github.com/aptible/supercronic
-pkgver=r226.afb376d
+pkgver=0.2.33.r0.gcca6b3a
 pkgrel=1
-pkgdesc="Supercronic is a crontab-compatible job runner, designed specifically to run in containers."
-arch=('i686' 'x86_64' 'aarch64' 'armv7h' 'armv6h' 'arm')
-url="https://github.com/aptible/supercronic"
-license=('MIT')
-makedepends=('git' 'go' 'bash-bats')
-provides=('supercronic')
-conflicts=('supercronic')
-_gourl=$__gitroot
-source=("$pkgname::git+https://${__gitroot}")
-sha256sums=('SKIP')
+pkgdesc='A crontab-compatible job runner, designed specifically to run in containers'
+arch=(aarch64 arm armv6h armv7h i686 pentium4 riscv64 x86_64)
+url='https://github.com/aptible/supercronic'
+license=(MIT)
+makedepends=(
+	git # Sources
+	go  # Build
+)
+provides=(supercronic)
+conflicts=(
+	supercronic
+	supercronic-bin
+)
+source=('supercronic::git+https://github.com/aptible/supercronic.git')
+b2sums=('SKIP')
+
+pkgver() {
+	cd "${srcdir}/supercronic/"
+	git describe --long --tags --abbrev=7 |
+		sed -e 's/^v//' -e 's/-\([[:digit:]]\+\)-\(g[[:alnum:]]\{7\}\)$/.r\1.\2/' -e 's/-/./g'
+}
 
 build() {
-  GOPATH="$srcdir" go get -v -d ${_gourl}
-  cd "$srcdir/$pkgname"
-  make
+	export GOPATH="${srcdir}/gopath/"
+	export CGO_ENABLED=0
+
+	cd "${srcdir}/supercronic/"
+	go build \
+		-trimpath \
+		-mod=readonly \
+		-modcacherw \
+		-ldflags "-X main.Version=v${pkgver}"
+}
+
+check() {
+	"${srcdir}/supercronic/supercronic" -version
 }
 
 package() {
-  mkdir -p "$pkgdir/usr/bin"
-  install -p -m755 "$srcdir/$pkgname/supercronic" "$pkgdir/usr/bin/"
+	install -Dm755 \
+		"${srcdir}/supercronic/supercronic" \
+		"${pkgdir}/usr/bin/supercronic"
+	install -Dm644 \
+		"${srcdir}/supercronic/LICENSE.md" \
+		"${pkgdir}/usr/share/licenses/${pkgname}/LICENSE.md"
 }
-
-pkgver() {
-  cd "$srcdir/$pkgname"
-  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
-}
-
-# vim:set ts=2 sw=2 et:
