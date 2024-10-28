@@ -35,6 +35,22 @@ git remote add yaak-git ssh://aur@aur.archlinux.org/yaak-git.git
 git remote add supercronic-bin ssh://aur@aur.archlinux.org/supercronic-bin.git
 ```
 
+## Adding a package
+
+All usages of Bash variables (`${var}`) in the following steps are
+placeholders and should be replaced with the actual values.
+
+1. Add a remote for the new package:
+   ```bash
+   git remote add ${package} ssh://aur@aur.archlinux.org/${package}.git
+   ```
+2. Add the subtree for the package:
+   ```bash
+   git subtree add --prefix ${package} ${package} master
+   ```
+3. Create the `${package}/PKGBUILD` file.
+4. Continue from step 2 in the [Updating a package](#updating-a-package) section.
+
 ## Updating a package
 
 All usages of Bash variables (`${var}`) in the following steps are
