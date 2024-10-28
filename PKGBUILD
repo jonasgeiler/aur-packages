@@ -23,10 +23,10 @@ source=("supercronic::git+https://github.com/aptible/supercronic.git#tag=v${pkgv
 b2sums=('24ff154428eb7b8d0ae8886ac8f9832e918af893d547dca180d52b0ac0ca61892596bcd637939113b0b89c654a7ccc927ba22f57cca5e0a8b0b20d26691d93d8')
 
 build() {
-	export GOPATH="${srcdir}/gopath"
+	export GOPATH="${srcdir}/gopath/"
 	export CGO_ENABLED=0
 
-	cd "${srcdir}/supercronic"
+	cd "${srcdir}/supercronic/"
 	go build \
 		-trimpath \
 		-mod=readonly \
