@@ -2,7 +2,7 @@
 # Maintainer: SoftExpert <softexpert at gmail dot com>
 pkgname=yaak
 # renovate: datasource=github-releases depName=yaakapp/app
-pkgver=2024.11.5
+pkgver=2024.12.0
 # should be the same commit hash used in the GitHub Actions run for the current release tag
 # (check the step where it checks out the plugins repository)
 _plugins_commit=9d24aefba186d1c3ebec6eeec90eba2a66435a98

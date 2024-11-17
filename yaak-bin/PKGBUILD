@@ -2,7 +2,7 @@
 # Maintainer: SoftExpert <softexpert at gmail dot com>
 pkgname=yaak-bin
 # renovate: datasource=github-releases depName=yaakapp/app
-pkgver=2024.11.5
+pkgver=2024.12.0
 pkgrel=1
 pkgdesc='Simple and intuitive API client for calling REST, GraphQL, and gRPC APIs (Pre-compiled version)'
 arch=(x86_64)
