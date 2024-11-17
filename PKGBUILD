@@ -1,7 +1,7 @@
 # Maintainer: Jonas Geiler <aur@jonasgeiler.com>
 # Maintainer: SoftExpert <softexpert at gmail dot com>
 pkgname=yaak-appimage
-# renovate: datasource=github-releases depName=yaakapp/app
+# renovate: datasource=github-releases depName=getyaak/app
 pkgver=2024.12.0
 pkgrel=1
 pkgdesc='Simple and intuitive API client for calling REST, GraphQL, and gRPC APIs (AppImage version)'
