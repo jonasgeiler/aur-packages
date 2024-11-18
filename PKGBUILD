@@ -1,8 +1,8 @@
 # Maintainer: Jonas Geiler <aur@jonasgeiler.com>
 # Maintainer: SoftExpert <softexpert at gmail dot com>
 pkgname=yaak
-# renovate: datasource=github-releases depName=yaakapp/app
-pkgver=2024.11.5
+# renovate: datasource=github-releases depName=getyaak/app
+pkgver=2024.12.0
 # should be the same commit hash used in the GitHub Actions run for the current release tag
 # (check the step where it checks out the plugins repository)
 _plugins_commit=9d24aefba186d1c3ebec6eeec90eba2a66435a98
@@ -47,10 +47,10 @@ options=(
 	!emptydirs # Remove empty directories from package because why not
 )
 source=(
-	"yaak::git+https://github.com/yaakapp/app.git#tag=v${pkgver}"
-	"yaak-plugins::git+https://github.com/yaakapp/plugins.git#commit=${_plugins_commit}"
+	"yaak::git+https://github.com/getyaak/app.git#tag=v${pkgver}"
+	"yaak-plugins::git+https://github.com/getyaak/plugins.git#commit=${_plugins_commit}"
 )
-b2sums=('c457aaac9f0c8b8b24e5398f6fa8f7c6c5c94711e5420723615b4848e24ea1e596b11dbe53616a16b1221f6c34815ffb199204e7cda9ff6709a242d76dfd83b7'
+b2sums=('9b924446819cdea18f75d064fa470d7c249d6220fff01395eec08d14a1969c3f2e9a18658b2bdfd899aae6796f3c85bf9220e579c8dfa9e0f7f3ae5c2629b659'
         '862b6920177f90b9b13e3737cfc57f415050a1e40257bd298713488df71b03d606c253e1d2b4d20bf51314ce075a6349aa7338a9e76174df122be856d2120b6a')
 
 build() {
