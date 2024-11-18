@@ -5,8 +5,8 @@ pkgname=yaak
 pkgver=2024.12.0
 # should be the same commit hash used in the GitHub Actions run for the current release tag
 # (check the step where it checks out the plugins repository)
-_plugins_commit=9d24aefba186d1c3ebec6eeec90eba2a66435a98
-pkgrel=2
+_plugins_commit=ab48f118af3988e70859fdb37afa69c9cbe509d1
+pkgrel=3
 pkgdesc='Simple and intuitive API client for calling REST, GraphQL, and gRPC APIs'
 arch=(aarch64 armv7h i686 pentium4 x86_64)
 url='https://yaak.app/'
@@ -51,7 +51,7 @@ source=(
 	"yaak-plugins::git+https://github.com/getyaak/plugins.git#commit=${_plugins_commit}"
 )
 b2sums=('9b924446819cdea18f75d064fa470d7c249d6220fff01395eec08d14a1969c3f2e9a18658b2bdfd899aae6796f3c85bf9220e579c8dfa9e0f7f3ae5c2629b659'
-        '862b6920177f90b9b13e3737cfc57f415050a1e40257bd298713488df71b03d606c253e1d2b4d20bf51314ce075a6349aa7338a9e76174df122be856d2120b6a')
+        'df35f4bd3e14f2f2d1e6e675c5411401256536c165ac9da5c328a2c0277b685f6fd5daafdece511622632673726d09f92472149dcad93abf97356aa88d30e0e1')
 
 build() {
 	export YAAK_VERSION="${pkgver}"
