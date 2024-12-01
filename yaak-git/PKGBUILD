@@ -1,7 +1,7 @@
 # Maintainer: Jonas Geiler <aur@jonasgeiler.com>
 # Maintainer: SoftExpert <softexpert at gmail dot com>
 pkgname=yaak-git
-pkgver=2024.12.0.r0.g3ecfb15
+pkgver=2024.12.1.r0.ge1363cf
 pkgrel=1
 pkgdesc='Simple and intuitive API client for calling REST, GraphQL, and gRPC APIs (Development version)'
 arch=(aarch64 armv7h i686 pentium4 x86_64)
@@ -43,8 +43,8 @@ options=(
 	!emptydirs # Remove empty directories from package because why not
 )
 source=(
-	"yaak::git+https://github.com/getyaak/app.git"
-	"yaak-plugins::git+https://github.com/getyaak/plugins.git"
+	"yaak::git+https://github.com/mountain-loop/yaak.git"
+	"yaak-plugins::git+https://github.com/mountain-loop/plugins.git"
 )
 b2sums=('SKIP'
         'SKIP')

@@ -2,11 +2,11 @@
 # Maintainer: SoftExpert <softexpert at gmail dot com>
 pkgname=yaak
 # renovate: datasource=github-releases depName=getyaak/app
-pkgver=2024.12.0
+pkgver=2024.12.1
 # should be the same commit hash used in the GitHub Actions run for the current release tag
 # (check the step where it checks out the plugins repository)
 _plugins_commit=ab48f118af3988e70859fdb37afa69c9cbe509d1
-pkgrel=3
+pkgrel=1
 pkgdesc='Simple and intuitive API client for calling REST, GraphQL, and gRPC APIs'
 arch=(aarch64 armv7h i686 pentium4 x86_64)
 url='https://yaak.app/'
@@ -47,10 +47,10 @@ options=(
 	!emptydirs # Remove empty directories from package because why not
 )
 source=(
-	"yaak::git+https://github.com/getyaak/app.git#tag=v${pkgver}"
-	"yaak-plugins::git+https://github.com/getyaak/plugins.git#commit=${_plugins_commit}"
+	"yaak::git+https://github.com/mountain-loop/yaak.git#tag=v${pkgver}"
+	"yaak-plugins::git+https://github.com/mountain-loop/plugins.git#commit=${_plugins_commit}"
 )
-b2sums=('9b924446819cdea18f75d064fa470d7c249d6220fff01395eec08d14a1969c3f2e9a18658b2bdfd899aae6796f3c85bf9220e579c8dfa9e0f7f3ae5c2629b659'
+b2sums=('03633d07cf5d8dc685dea8cc3f94ea3cf6b0eee67364a4aacd85b6e44902ca851ceeb68470d46b991a0c5cb5625ae8b486f41d3577189b10266dcb48a067acfa'
         'df35f4bd3e14f2f2d1e6e675c5411401256536c165ac9da5c328a2c0277b685f6fd5daafdece511622632673726d09f92472149dcad93abf97356aa88d30e0e1')
 
 build() {
