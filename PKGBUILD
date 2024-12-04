@@ -2,8 +2,8 @@
 # Maintainer: SoftExpert <softexpert at gmail dot com>
 pkgname=yaak-bin
 # renovate: datasource=github-releases depName=getyaak/app
-pkgver=2024.12.1
-pkgrel=3
+pkgver=2024.13.0
+pkgrel=1
 pkgdesc='Simple and intuitive API client for calling REST, GraphQL, and gRPC APIs (Pre-compiled version)'
 arch=(x86_64)
 url='https://yaak.app/'
@@ -37,7 +37,7 @@ source_x86_64=(
 	"${pkgname}-${pkgver}.deb::https://github.com/mountain-loop/yaak/releases/download/v${pkgver}/yaak_${pkgver}_amd64.deb"
 	"${pkgname}-${pkgver}.LICENSE::https://raw.githubusercontent.com/mountain-loop/yaak/refs/tags/v${pkgver}/LICENSE"
 )
-b2sums_x86_64=('31eeadcad976b73f10b3b7b96357a51ae29e194dc8637056f7f4cb8b309cd74da7fa4b7d593afc31048d0bbcc203e4835d9cdf8299e4e013966c13d7c2cee005'
+b2sums_x86_64=('ef39dda8b3b8cb9473f8223e752365f5e4c7353bcc56ba29b8c3236534e7c93d79b41e0cc2fd46e2d7b7c4f2e021d7d594235b8a8936f9cd44c65565c8769452'
                '011fb406bfe4a8944efbae1f9cfa420fe421f1de3ae628802548676a1fe1318850a5f98c60cd29899efe3946dec329b6607f04917e966808f62f9e4ecaaea13b')
 
 prepare() {
