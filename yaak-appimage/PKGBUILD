@@ -2,7 +2,7 @@
 # Maintainer: SoftExpert <softexpert at gmail dot com>
 pkgname=yaak-appimage
 # renovate: datasource=github-releases depName=getyaak/app
-pkgver=2024.12.1
+pkgver=2024.13.0
 pkgrel=2
 pkgdesc='Simple and intuitive API client for calling REST, GraphQL, and gRPC APIs (AppImage version)'
 arch=(x86_64)
