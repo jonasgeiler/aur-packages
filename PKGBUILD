@@ -2,8 +2,9 @@
 # Maintainer: SoftExpert <softexpert at gmail dot com>
 pkgname=yaak-appimage
 # renovate: datasource=github-releases depName=getyaak/app
-pkgver=2024.13.0
-pkgrel=1
+pkgver=2025.1.0
+_rc=-rc.1
+pkgrel=0.1
 pkgdesc='Simple and intuitive API client for calling REST, GraphQL, and gRPC APIs (AppImage version)'
 arch=(x86_64)
 url='https://yaak.app/'
@@ -18,6 +19,7 @@ provides=(yaak yaak-app)
 conflicts=(
 	yaak
 	yaak-app-beta
+	yaak-beta-bin
 	yaak-bin
 	yaak-git
 )
@@ -26,10 +28,10 @@ options=(
 	!emptydirs # Remove empty directories from package some icon dirs are empty
 )
 source_x86_64=(
-	"${pkgname}-${pkgver}.AppImage::https://github.com/mountain-loop/yaak/releases/download/v${pkgver}/yaak_${pkgver}_amd64.AppImage"
-	"${pkgname}-${pkgver}.LICENSE::https://raw.githubusercontent.com/mountain-loop/yaak/refs/tags/v${pkgver}/LICENSE"
+	"${pkgname}-${pkgver}.AppImage::https://github.com/mountain-loop/yaak/releases/download/v${pkgver}${_rc}/yaak_${pkgver}${_rc}_amd64.AppImage"
+	"${pkgname}-${pkgver}.LICENSE::https://raw.githubusercontent.com/mountain-loop/yaak/refs/tags/v${pkgver}${_rc}/LICENSE"
 )
-b2sums_x86_64=('c878ca3297dfc542c25e6d48203f9f3b9a3f3a95d7705465748f2adbb4951a6a63ade0c0ecde75bb0b0007cb24a290a60c4cead6bc9148cd11914e6e98fe1d26'
+b2sums_x86_64=('d38150f13a68b2407660729f9a40ec46cc9bb806dd2e5ba19d8dc4701ce6bb74f45f420e6c0818e4062de16fb80109d74a3aa4c6b814507b4378d6c997d58b7d'
                '011fb406bfe4a8944efbae1f9cfa420fe421f1de3ae628802548676a1fe1318850a5f98c60cd29899efe3946dec329b6607f04917e966808f62f9e4ecaaea13b')
 
 prepare() {

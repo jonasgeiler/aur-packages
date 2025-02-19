@@ -1,7 +1,7 @@
 pkgbase = yaak-appimage
 	pkgdesc = Simple and intuitive API client for calling REST, GraphQL, and gRPC APIs (AppImage version)
-	pkgver = 2024.13.0
-	pkgrel = 1
+	pkgver = 2025.1.0
+	pkgrel = 0.1
 	url = https://yaak.app/
 	arch = x86_64
 	license = MIT
@@ -12,13 +12,14 @@ pkgbase = yaak-appimage
 	provides = yaak-app
 	conflicts = yaak
 	conflicts = yaak-app-beta
+	conflicts = yaak-beta-bin
 	conflicts = yaak-bin
 	conflicts = yaak-git
 	options = !strip
 	options = !emptydirs
-	source_x86_64 = yaak-appimage-2024.13.0.AppImage::https://github.com/mountain-loop/yaak/releases/download/v2024.13.0/yaak_2024.13.0_amd64.AppImage
-	source_x86_64 = yaak-appimage-2024.13.0.LICENSE::https://raw.githubusercontent.com/mountain-loop/yaak/refs/tags/v2024.13.0/LICENSE
-	b2sums_x86_64 = c878ca3297dfc542c25e6d48203f9f3b9a3f3a95d7705465748f2adbb4951a6a63ade0c0ecde75bb0b0007cb24a290a60c4cead6bc9148cd11914e6e98fe1d26
+	source_x86_64 = yaak-appimage-2025.1.0.AppImage::https://github.com/mountain-loop/yaak/releases/download/v2025.1.0-rc.1/yaak_2025.1.0-rc.1_amd64.AppImage
+	source_x86_64 = yaak-appimage-2025.1.0.LICENSE::https://raw.githubusercontent.com/mountain-loop/yaak/refs/tags/v2025.1.0-rc.1/LICENSE
+	b2sums_x86_64 = d38150f13a68b2407660729f9a40ec46cc9bb806dd2e5ba19d8dc4701ce6bb74f45f420e6c0818e4062de16fb80109d74a3aa4c6b814507b4378d6c997d58b7d
 	b2sums_x86_64 = 011fb406bfe4a8944efbae1f9cfa420fe421f1de3ae628802548676a1fe1318850a5f98c60cd29899efe3946dec329b6607f04917e966808f62f9e4ecaaea13b
 
 pkgname = yaak-appimage
