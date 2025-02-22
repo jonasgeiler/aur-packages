@@ -15,6 +15,7 @@ pkgbase = yaak-bin
 	depends = libsoup3
 	depends = pango
 	depends = webkit2gtk-4.1
+	depends = zlib
 	provides = yaak
 	provides = yaak-app
 	conflicts = yaak

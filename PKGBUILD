@@ -20,6 +20,7 @@ depends=(
 	libsoup3
 	pango
 	webkit2gtk-4.1
+	zlib
 )
 provides=(yaak yaak-app)
 conflicts=(
