@@ -1,6 +1,6 @@
 pkgbase = yaak-git
-	pkgdesc = Simple and intuitive API client for calling REST, GraphQL, and gRPC APIs (Development version)
-	pkgver = 2024.12.1.r0.ge1363cf
+	pkgdesc = Offline and Git friendly API client for HTTP, GraphQL, WebSockets, SSE, and gRPC (Development version)
+	pkgver = 2025.1.1.r0.g6a63cc2
 	pkgrel = 1
 	url = https://yaak.app/
 	arch = aarch64
@@ -27,6 +27,7 @@ pkgbase = yaak-git
 	depends = libsoup3
 	depends = pango
 	depends = webkit2gtk-4.1
+	depends = zlib
 	provides = yaak
 	provides = yaak-app
 	conflicts = yaak

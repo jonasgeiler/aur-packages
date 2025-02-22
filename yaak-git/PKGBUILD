@@ -1,9 +1,9 @@
 # Maintainer: Jonas Geiler <aur@jonasgeiler.com>
 # Maintainer: SoftExpert <softexpert at gmail dot com>
 pkgname=yaak-git
-pkgver=2024.12.1.r0.ge1363cf
+pkgver=2025.1.1.r0.g6a63cc2
 pkgrel=1
-pkgdesc='Simple and intuitive API client for calling REST, GraphQL, and gRPC APIs (Development version)'
+pkgdesc='Offline and Git friendly API client for HTTP, GraphQL, WebSockets, SSE, and gRPC (Development version)'
 arch=(aarch64 armv7h i686 pentium4 x86_64)
 url='https://yaak.app/'
 license=(MIT)
@@ -19,6 +19,7 @@ depends=(
 	libsoup3
 	pango
 	webkit2gtk-4.1
+	zlib
 )
 makedepends=(
 	appmenu-gtk-module   # Tauri
@@ -67,13 +68,15 @@ build() {
 	local _semver && _semver="$(_semver)"
 	export YAAK_VERSION="${_semver}"
 	export YAAK_PLUGINS_DIR="${srcdir}/yaak-plugins/"
+	export TAURI_APP_PATH="${srcdir}/yaak/src-tauri/"
 	export CI=true
 
 	cd "${srcdir}/yaak/"
 	npm ci
 	npm install @yaakapp/cli
+	npm run build
 	npm run replace-version
-	npm run tauri build -- --verbose --bundles deb
+	npm run tauri build -- --bundles deb --config '{ "bundle": { "createUpdaterArtifacts": false } }'
 
 	sed -e 's|Name=yaak|Name=Yaak|' \
 		-e '$aGenericName=API Client' \
