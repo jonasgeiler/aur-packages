@@ -36,7 +36,7 @@ options=(
 )
 source_x86_64=(
 	"${pkgname}-${pkgver}.deb::https://github.com/mountain-loop/yaak/releases/download/v${pkgver}/yaak_${pkgver}_amd64.deb"
-	"${pkgname}-${pkgver}.LICENSE::https://raw.githubusercontent.com/mountain-loop/yaak/refs/tags/v${pkgver}$/LICENSE"
+	"${pkgname}-${pkgver}.LICENSE::https://raw.githubusercontent.com/mountain-loop/yaak/refs/tags/v${pkgver}/LICENSE"
 )
 b2sums_x86_64=('b644eae29bde1fb31fbd68be6f9d7210f1aa251150077554e6b22b88e3df0974282c33e78520bac90cf6bf0b31e30b69b3035e53e39db9255f5a50f527891cdd'
                '011fb406bfe4a8944efbae1f9cfa420fe421f1de3ae628802548676a1fe1318850a5f98c60cd29899efe3946dec329b6607f04917e966808f62f9e4ecaaea13b')
