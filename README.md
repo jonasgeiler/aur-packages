@@ -106,7 +106,7 @@ placeholders and should be replaced with the actual values.
 8. Stage the changes, commit and push them to this repository:
    ```bash
    git add PKGBUILD .SRCINFO
-   git commit -m "feat(${package}): updated to ${major}.${minor}.${patch}"
+   git commit -m "feat(${package}): update to ${major}.${minor}.${patch}"
    git push
    ```
 9. Push the changes to the AUR repository:
