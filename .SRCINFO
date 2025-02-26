@@ -1,6 +1,6 @@
 pkgbase = yaak-appimage
 	pkgdesc = Offline and Git friendly API client for HTTP, GraphQL, WebSockets, SSE, and gRPC (AppImage version)
-	pkgver = 2025.1.1
+	pkgver = 2025.1.2
 	pkgrel = 1
 	url = https://yaak.app/
 	arch = x86_64
@@ -17,9 +17,9 @@ pkgbase = yaak-appimage
 	conflicts = yaak-git
 	options = !strip
 	options = !emptydirs
-	source_x86_64 = yaak-appimage-2025.1.1.AppImage::https://github.com/mountain-loop/yaak/releases/download/v2025.1.1/yaak_2025.1.1_amd64.AppImage
-	source_x86_64 = yaak-appimage-2025.1.1.LICENSE::https://raw.githubusercontent.com/mountain-loop/yaak/refs/tags/v2025.1.1/LICENSE
-	b2sums_x86_64 = aff41b070507eacce046f8cdd83d414715740e39c64360b42e4014669f85356aef5995c84a4f3e2ba69780e625f691b59300daae4dbab78807f195fe1a676846
+	source_x86_64 = yaak-appimage-2025.1.2.AppImage::https://github.com/mountain-loop/yaak/releases/download/v2025.1.2/yaak_2025.1.2_amd64.AppImage
+	source_x86_64 = yaak-appimage-2025.1.2.LICENSE::https://raw.githubusercontent.com/mountain-loop/yaak/refs/tags/v2025.1.2/LICENSE
+	b2sums_x86_64 = 93d096359d8cdbcf989a126532b3b340e5502ac6ae666153779a9996b22327e2d451bde5f55c8dcc707862bfeb0d2aff6261c7870427954f850c46e1ce14ad02
 	b2sums_x86_64 = 011fb406bfe4a8944efbae1f9cfa420fe421f1de3ae628802548676a1fe1318850a5f98c60cd29899efe3946dec329b6607f04917e966808f62f9e4ecaaea13b
 
 pkgname = yaak-appimage
