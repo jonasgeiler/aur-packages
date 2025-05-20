@@ -3,7 +3,7 @@
 pkgname=yaak-git
 pkgver=2025.1.1.r0.g6a63cc2
 pkgrel=1
-pkgdesc='Offline and Git friendly API client for HTTP, GraphQL, WebSockets, SSE, and gRPC (Development version)'
+pkgdesc='Fast, offline and Git-friendly API client for HTTP, GraphQL, WebSockets, SSE, and gRPC (Development version)'
 arch=(aarch64 armv7h i686 pentium4 x86_64)
 url='https://yaak.app/'
 license=(MIT)
