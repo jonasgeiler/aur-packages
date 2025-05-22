@@ -2,10 +2,10 @@
 # Maintainer: SoftExpert <softexpert at gmail dot com>
 pkgname=yaak
 # renovate: datasource=github-releases depName=getyaak/app
-pkgver=2025.2.0
+pkgver=2025.2.2
 # should be the same commit hash used in the GitHub Actions run for the current release tag
 # (check the step where it checks out the plugins repository)
-_plugins_commit=dfaeda224df46ab5e268f342b60aea0b773d1707
+_plugins_commit=d02883282fa38ab127d7fc1c43bb8b55a1ca859a
 pkgrel=1
 pkgdesc='Fast, offline and Git-friendly API client for HTTP, GraphQL, WebSockets, SSE, and gRPC'
 arch=(aarch64 armv7h i686 pentium4 x86_64)
@@ -52,8 +52,8 @@ source=(
 	"yaak::git+https://github.com/mountain-loop/yaak.git#tag=v${pkgver}"
 	"yaak-plugins::git+https://github.com/mountain-loop/plugins.git#commit=${_plugins_commit}"
 )
-b2sums=('5ed1d09cc9599f05f2e42d4dfba14be50efb210e2cc358682691a8ccbc57a3c8f9d8cc7cd1081cba7b3507717da2433c76bfa6ac6b7d34d88ef13d035e20ac8b'
-        '4565e2b5f50fa2ee6e1e1fbc8a5935064486a6fd6526f8ddb43a4821262fdabac8f032563ead90221be7560a5cb16cf8f5e910e9bea3699af9d15d7f00cb26d8')
+b2sums=('d84238d6c3b7ede9b9538dad5506d606692ad4b7e52b5569655156c5abef2dd5d9e80ba7c9e4466b8ae2a45691f70466ea349a7813d9709e2b0c9fca29041dae'
+        '058add79b12f2b742ac6c0b255a9e7a8cbdc58e00e178544218e8101d5bc311822252d86b64bf6838363a3a325807d1d18468154a77849bb911ab40a5dea7d37')
 
 build() {
 	export YAAK_VERSION="${pkgver}"
