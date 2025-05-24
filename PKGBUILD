@@ -2,7 +2,7 @@
 # Maintainer: SoftExpert <softexpert at gmail dot com>
 pkgname=yaak
 # renovate: datasource=github-releases depName=getyaak/app
-pkgver=2025.2.2
+pkgver=2025.2.3
 # should be the same commit hash used in the GitHub Actions run for the current release tag
 # (check the step where it checks out the plugins repository)
 _plugins_commit=d02883282fa38ab127d7fc1c43bb8b55a1ca859a
@@ -52,7 +52,7 @@ source=(
 	"yaak::git+https://github.com/mountain-loop/yaak.git#tag=v${pkgver}"
 	"yaak-plugins::git+https://github.com/mountain-loop/plugins.git#commit=${_plugins_commit}"
 )
-b2sums=('d84238d6c3b7ede9b9538dad5506d606692ad4b7e52b5569655156c5abef2dd5d9e80ba7c9e4466b8ae2a45691f70466ea349a7813d9709e2b0c9fca29041dae'
+b2sums=('e64ddee27b43d325ae9418b2fc159cbc61a99631c2c3a128e34c8acb31938b9fbfda6f74e1787168cc631662f9d5e7253f54036907341d69e291d317cb79322c'
         '058add79b12f2b742ac6c0b255a9e7a8cbdc58e00e178544218e8101d5bc311822252d86b64bf6838363a3a325807d1d18468154a77849bb911ab40a5dea7d37')
 
 build() {

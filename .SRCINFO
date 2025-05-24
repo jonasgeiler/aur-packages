@@ -1,6 +1,6 @@
 pkgbase = yaak
 	pkgdesc = Fast, offline and Git-friendly API client for HTTP, GraphQL, WebSockets, SSE, and gRPC
-	pkgver = 2025.2.2
+	pkgver = 2025.2.3
 	pkgrel = 1
 	url = https://yaak.app/
 	arch = aarch64
@@ -37,9 +37,9 @@ pkgbase = yaak
 	options = !lto
 	options = !strip
 	options = !emptydirs
-	source = yaak::git+https://github.com/mountain-loop/yaak.git#tag=v2025.2.2
+	source = yaak::git+https://github.com/mountain-loop/yaak.git#tag=v2025.2.3
 	source = yaak-plugins::git+https://github.com/mountain-loop/plugins.git#commit=d02883282fa38ab127d7fc1c43bb8b55a1ca859a
-	b2sums = d84238d6c3b7ede9b9538dad5506d606692ad4b7e52b5569655156c5abef2dd5d9e80ba7c9e4466b8ae2a45691f70466ea349a7813d9709e2b0c9fca29041dae
+	b2sums = e64ddee27b43d325ae9418b2fc159cbc61a99631c2c3a128e34c8acb31938b9fbfda6f74e1787168cc631662f9d5e7253f54036907341d69e291d317cb79322c
 	b2sums = 058add79b12f2b742ac6c0b255a9e7a8cbdc58e00e178544218e8101d5bc311822252d86b64bf6838363a3a325807d1d18468154a77849bb911ab40a5dea7d37
 
 pkgname = yaak
