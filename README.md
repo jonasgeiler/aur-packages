@@ -155,6 +155,18 @@ namcap -i supercronic-bin/PKGBUILD
 namcap -i supercronic-git/PKGBUILD
 ```
 
+### Build all packages
+
+```bash
+makepkg --dir yaak --force --cleanbuild
+makepkg --dir yaak-appimage --force --cleanbuild
+makepkg --dir yaak-bin --force --cleanbuild
+makepkg --dir yaak-git --force --cleanbuild
+makepkg --dir supercronic --force --cleanbuild
+makepkg --dir supercronic-bin --force --cleanbuild
+makepkg --dir supercronic-git --force --cleanbuild
+```
+
 ### Update `.SRCINFO` of all packages
 
 ```bash
