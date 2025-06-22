@@ -1,7 +1,7 @@
 # Maintainer: Jonas Geiler <aur@jonasgeiler.com>
 # Maintainer: SoftExpert <softexpert at gmail dot com>
 pkgname=yaak-git
-pkgver=2025.1.1.r0.g6a63cc2
+pkgver=2025.4.0.r0.gaadfbfd
 pkgrel=1
 pkgdesc='Fast, offline and Git-friendly API client for HTTP, GraphQL, WebSockets, SSE, and gRPC (Development version)'
 arch=(aarch64 armv7h i686 pentium4 x86_64)
@@ -9,7 +9,10 @@ url='https://yaak.app/'
 license=(MIT)
 depends=(
 	# As reported by namcap
+	bzip2
 	cairo
+	dbus
+	fontconfig
 	gcc-libs
 	gdk-pixbuf2
 	glib2
@@ -19,6 +22,7 @@ depends=(
 	libsoup3
 	pango
 	webkit2gtk-4.1
+	xz
 	zlib
 )
 makedepends=(
@@ -43,12 +47,8 @@ options=(
 	!strip     # Stripping symbols would break the output binary
 	!emptydirs # Remove empty directories from package because why not
 )
-source=(
-	"yaak::git+https://github.com/mountain-loop/yaak.git"
-	"yaak-plugins::git+https://github.com/mountain-loop/plugins.git"
-)
-b2sums=('SKIP'
-        'SKIP')
+source=("yaak::git+https://github.com/mountain-loop/yaak.git")
+b2sums=('SKIP')
 
 pkgver() {
 	cd "${srcdir}/yaak/"
@@ -67,13 +67,11 @@ _semver() {
 build() {
 	local _semver && _semver="$(_semver)"
 	export YAAK_VERSION="${_semver}"
-	export YAAK_PLUGINS_DIR="${srcdir}/yaak-plugins/"
 	export TAURI_APP_PATH="${srcdir}/yaak/src-tauri/"
 	export CI=true
 
 	cd "${srcdir}/yaak/"
 	npm ci
-	npm install @yaakapp/cli
 	npm run build
 	npm run replace-version
 	npm run tauri build -- --bundles deb --config '{ "bundle": { "createUpdaterArtifacts": false } }'
