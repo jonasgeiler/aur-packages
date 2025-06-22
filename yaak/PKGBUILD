@@ -2,10 +2,7 @@
 # Maintainer: SoftExpert <softexpert at gmail dot com>
 pkgname=yaak
 # renovate: datasource=github-releases depName=getyaak/app
-pkgver=2025.3.1
-# should be the same commit hash used in the GitHub Actions run for the current release tag
-# (check the step where it checks out the plugins repository)
-_plugins_commit=d07272003bb2e350362ffa136d240c6d1132fcd7
+pkgver=2025.4.0
 pkgrel=1
 pkgdesc='Fast, offline and Git-friendly API client for HTTP, GraphQL, WebSockets, SSE, and gRPC'
 arch=(aarch64 armv7h i686 pentium4 x86_64)
@@ -15,6 +12,7 @@ depends=(
 	# As reported by namcap
 	cairo
 	dbus
+	fontconfig
 	gcc-libs
 	gdk-pixbuf2
 	glib2
@@ -48,22 +46,16 @@ options=(
 	!strip     # Stripping symbols would break the output binary
 	!emptydirs # Remove empty directories from package because why not
 )
-source=(
-	"yaak::git+https://github.com/mountain-loop/yaak.git#tag=v${pkgver}"
-	"yaak-plugins::git+https://github.com/mountain-loop/plugins.git#commit=${_plugins_commit}"
-)
-b2sums=('3bb271e7f126947769ddd982cf1979bb733d23dc788c89cb2d80bb11c92951ad146a6b3b7b3e968e8b179fb2dd8d798fc83d3d38622566677c71dd4270da6496'
-        'fcdcf31fdf1514c63528efec00df9c14fab759d92bb2d530bc987aab8fd8d11690e459dc1ab06755ebbd8f184c3338590b3819144490e2df9903ece67aec6e9d')
+source=("yaak::git+https://github.com/mountain-loop/yaak.git#tag=v${pkgver}")
+b2sums=('be7e5814b2b62dc8be529caefe56c8031bd30eb6be465a2eef11e322a5e942692ba2a6574e340389640bb949d9c92c9cb9ece124c71e1ba87d2fd0df815a34fe')
 
 build() {
 	export YAAK_VERSION="${pkgver}"
-	export YAAK_PLUGINS_DIR="${srcdir}/yaak-plugins/"
 	export TAURI_APP_PATH="${srcdir}/yaak/src-tauri/"
 	export CI=true
 
 	cd "${srcdir}/yaak/"
 	npm ci
-	npm install @yaakapp/cli
 	npm run build
 	npm run replace-version
 	npm run tauri build -- --bundles deb --config '{ "bundle": { "createUpdaterArtifacts": false } }'
