@@ -2,7 +2,7 @@
 # Maintainer: SoftExpert <softexpert at gmail dot com>
 pkgname=yaak-bin
 # renovate: datasource=github-releases depName=getyaak/app
-pkgver=2025.5.3
+pkgver=2025.5.4
 pkgrel=1
 pkgdesc='Fast, offline and Git-friendly API client for HTTP, GraphQL, WebSockets, SSE, and gRPC (Pre-compiled version)'
 arch=(x86_64)
@@ -40,7 +40,7 @@ source_x86_64=(
 	"${pkgname}-${pkgver}.deb::https://github.com/mountain-loop/yaak/releases/download/v${pkgver}/yaak_${pkgver}_amd64.deb"
 	"${pkgname}-${pkgver}.LICENSE::https://raw.githubusercontent.com/mountain-loop/yaak/refs/tags/v${pkgver}/LICENSE"
 )
-b2sums_x86_64=('5c931868dd5e1a927437e10f9e8eae5e6681e9f4fcd72031c6a89b0da6ad661d701e2c67226d488f32b97c0217d6f905478227cf2e036bde8110cf9b0fae81f7'
+b2sums_x86_64=('b9b527e7cbdc0393adce17c49ba9bf6dc5c5c2a17bd756c4592437fa501d62b24eba7aeef2d0d21efaa223c018ad858a8f4c046228177fffc4e48365265d84a4'
                '011fb406bfe4a8944efbae1f9cfa420fe421f1de3ae628802548676a1fe1318850a5f98c60cd29899efe3946dec329b6607f04917e966808f62f9e4ecaaea13b')
 
 prepare() {
