@@ -2,7 +2,7 @@
 # Maintainer: SoftExpert <softexpert at gmail dot com>
 pkgname=yaak-appimage
 # renovate: datasource=github-releases depName=getyaak/app
-pkgver=2025.6.0
+pkgver=2025.6.1
 pkgrel=1
 pkgdesc='Fast, offline and Git-friendly API client for HTTP, GraphQL, WebSockets, SSE, and gRPC (AppImage version)'
 arch=(x86_64)
@@ -30,7 +30,7 @@ source_x86_64=(
 	"${pkgname}-${pkgver}.AppImage::https://github.com/mountain-loop/yaak/releases/download/v${pkgver}/yaak_${pkgver}_amd64.AppImage"
 	"${pkgname}-${pkgver}.LICENSE::https://raw.githubusercontent.com/mountain-loop/yaak/refs/tags/v${pkgver}/LICENSE"
 )
-b2sums_x86_64=('4b6145d68d9d9ffd5103e53ff20b5bb553685bf3deb520f3427d753c662d5e7462a788363e6058dba0bca63fcecad23e04714fc7e50f6e2ea44870697aa96b60'
+b2sums_x86_64=('9117ac216edab8df999af42563c176ae4fe534500890681809ca93c17195f3488bda2b2d894490a64e7a22903b757a59100d3ffcfe90fff601fbf7fcf3c8f048'
                '011fb406bfe4a8944efbae1f9cfa420fe421f1de3ae628802548676a1fe1318850a5f98c60cd29899efe3946dec329b6607f04917e966808f62f9e4ecaaea13b')
 
 prepare() {
