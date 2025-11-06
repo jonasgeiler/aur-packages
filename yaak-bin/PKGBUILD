@@ -2,7 +2,7 @@
 # Maintainer: SoftExpert <softexpert at gmail dot com>
 pkgname=yaak-bin
 # renovate: datasource=github-releases depName=getyaak/app
-pkgver=2025.8.1
+pkgver=2025.8.2
 pkgrel=1
 pkgdesc='Fast, offline and Git-friendly API client for HTTP, GraphQL, WebSockets, SSE, and gRPC (Pre-compiled version)'
 arch=(x86_64)
@@ -12,6 +12,7 @@ depends=(
 	# As reported by namcap
 	cairo
 	dbus
+	fontconfig
 	gcc-libs
 	gdk-pixbuf2
 	glib2
@@ -19,7 +20,6 @@ depends=(
 	gtk3
 	hicolor-icon-theme
 	libsoup3
-	pango
 	webkit2gtk-4.1
 	zlib
 )
@@ -40,7 +40,7 @@ source_x86_64=(
 	"${pkgname}-${pkgver}.deb::https://github.com/mountain-loop/yaak/releases/download/v${pkgver}/yaak_${pkgver}_amd64_linux.deb"
 	"${pkgname}-${pkgver}.LICENSE::https://raw.githubusercontent.com/mountain-loop/yaak/refs/tags/v${pkgver}/LICENSE"
 )
-b2sums_x86_64=('92781aadc02cb28a5c189ecb0c4a4b4d9861db3807e7829ac891ff28c618f4052bfbbf560e98364da171f93b8cddc700a08e25d704196120571e26c42f78c6e3'
+b2sums_x86_64=('ed9dae086119bb6bad46c0fc9fd90c16f38ed1aa8b34f98c6948fc35638ad0de85a6d96e269f285c06c0b89028b26ad6c9edd96083fe5a4f382315d22b6c0903'
                '011fb406bfe4a8944efbae1f9cfa420fe421f1de3ae628802548676a1fe1318850a5f98c60cd29899efe3946dec329b6607f04917e966808f62f9e4ecaaea13b')
 
 prepare() {
