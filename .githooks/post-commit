@@ -1,0 +1,30 @@
+#!/bin/bash
+# Git hook file
+# See: https://git-scm.com/docs/githooks
+################# SETUP #########################
+set -o errexit -o xtrace -o nounset -o pipefail #
+#################################################
+
+# Taken from: https://github.com/eli-schwartz/aurpublish/blob/3b978be48dde74eae86dff49d55ae29bb4a217ec/post-commit.hook
+# Fix SRCINFO files being rolled back in worktree
+#
+# When `commit` is used with `--only`, which is the default behaviour when
+# used with paths as arguments, `git` will skip changes present in the
+# staging area and commit the specified files using the versions in the
+# worktree.
+#
+# To make this happen, git creates a temporary index with those files and
+# passes control to the commit machinery. As a result, some operations are
+# using an ephemeral version of the staging area that is discarded after
+# the commit is completed.
+#
+# This ultimately results in the appearance that changes done inside the
+# pre-commit hook are being rolled back (in this case generating and
+# adding .SRCINFO files) where in reality they are never getting into the
+# "official" staging area in the first place.
+#
+# To remedy this, let's add a post-commit hook that updates the
+# "real" staging area with the changes made to .SRCINFO inside the
+# pre-commit hook.
+#
+git diff-tree -r --no-commit-id -z --name-only HEAD -- ':/**/.SRCINFO' | git update-index -z --stdin

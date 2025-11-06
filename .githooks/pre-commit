@@ -1,0 +1,36 @@
+#!/bin/bash
+# Git hook file
+# See: https://git-scm.com/docs/githooks
+################# SETUP ###############
+set -o errexit -o nounset -o pipefail #
+#######################################
+
+# Escape sequences for colored output
+F_RESET="\033[0m"
+F_BOLD="\033[1m"
+F_BOLD_GREEN="\033[1;32m"
+F_BOLD_BLUE="\033[1;34m"
+# Check if output is a terminal and supports colors, while allowing override via FORCE_COLOR and NO_COLOR
+if [[ -z "${FORCE_COLOR:-}" && (-n "${NO_COLOR:-}" ||
+	! -t 1 || "$(tput colors 2> /dev/null)" -lt 8) ]]; then
+	F_RESET=""
+	F_BOLD=""
+	F_BOLD_GREEN=""
+	F_BOLD_BLUE=""
+fi
+
+echo -e "${F_BOLD_GREEN}==>${F_RESET} ${F_BOLD}Retrieving added/modified PKGBUILD files...${F_RESET}"
+packages_to_process=()
+for path in $(git diff --staged --diff-filter=AM --name-only -- '*/PKGBUILD'); do
+	echo -e "  ${F_BOLD_BLUE}->${F_RESET} ${F_BOLD}Found ${path}${F_RESET}"
+	packages_to_process+=("${path%/PKGBUILD}")
+done
+
+for package in "${packages_to_process[@]}"; do
+	# Make sure the source files are present and correct.
+	makepkg --dir="${package}" --verifysource --force
+
+	echo -e "${F_BOLD_GREEN}==>${F_RESET} ${F_BOLD}Generating SRCINFO for ${package}...${F_RESET}"
+	makepkg --dir="${package}" --printsrcinfo > "${package}/.SRCINFO"
+	git add "${package}/.SRCINFO"
+done

@@ -39,6 +39,15 @@ git remote add supercronic-bin ssh://aur@aur.archlinux.org/supercronic-bin.git
 git remote add supercronic-git ssh://aur@aur.archlinux.org/supercronic-git.git
 ```
 
+Lastly, register the `.githooks` directory as a Git hooks directory:
+
+```bash
+git config core.hooksPath .githooks
+````
+
+The hooks contain some useful scripts that help with the development process,
+like automatically updating and adding the `.SRCINFO` file on commit.
+
 ## Adding a package
 
 All usages of Bash variables (`${var}`) in the following steps are
@@ -122,13 +131,13 @@ root of the repository.
 ### Pull new changes of all packages
 
 ```bash
-git subtree pull --prefix yaak yaak master
-git subtree pull --prefix yaak-appimage yaak-appimage master
-git subtree pull --prefix yaak-bin yaak-bin master
-git subtree pull --prefix yaak-git yaak-git master
-git subtree pull --prefix supercronic supercronic master
-git subtree pull --prefix supercronic-bin supercronic-bin master
-git subtree pull --prefix supercronic-git supercronic-git master
+git subtree pull --prefix yaak yaak master --message "Merge subtree 'yaak'"
+git subtree pull --prefix yaak-appimage yaak-appimage master --message "Merge subtree 'yaak-appimage'"
+git subtree pull --prefix yaak-bin yaak-bin master --message "Merge subtree 'yaak-bin'"
+git subtree pull --prefix yaak-git yaak-git master --message "Merge subtree 'yaak-git'"
+git subtree pull --prefix supercronic supercronic master --message "Merge subtree 'supercronic'"
+git subtree pull --prefix supercronic-bin supercronic-bin master --message "Merge subtree 'supercronic-bin'"
+git subtree pull --prefix supercronic-git supercronic-git master --message "Merge subtree 'supercronic-git'"
 ```
 
 ### Update checksums of all packages
