@@ -3,13 +3,14 @@
 pkgname=yaak
 # renovate: datasource=github-releases depName=getyaak/app
 pkgver=2025.8.2
-pkgrel=1
+pkgrel=2
 pkgdesc='Fast, offline and Git-friendly API client for HTTP, GraphQL, WebSockets, SSE, and gRPC'
 arch=(aarch64 armv7h i686 pentium4 x86_64)
 url='https://yaak.app/'
 license=(MIT)
 depends=(
 	# As reported by namcap
+	bzip2
 	cairo
 	dbus
 	fontconfig
@@ -22,6 +23,7 @@ depends=(
 	libsoup3
 	pango
 	webkit2gtk-4.1
+	xz
 	zlib
 )
 makedepends=(
@@ -32,7 +34,8 @@ makedepends=(
 	librsvg              # Tauri
 	nodejs               # Custom scripts & web build
 	npm                  # Node dependencies & web build
-	protobuf             # Yaak
+	protobuf             # Yaak (needs protoc)
+	rust-wasm            # Yaak
 )
 provides=(yaak-app)
 conflicts=(
@@ -56,9 +59,8 @@ build() {
 
 	cd "${srcdir}/yaak/"
 	npm ci
-	npm run build
 	npm run replace-version
-	npm run tauri build -- --bundles deb --config '{ "bundle": { "createUpdaterArtifacts": false } }'
+	npm run tauri build -- --bundles deb
 
 	sed -e 's|Name=yaak|Name=Yaak|' \
 		-e '$aGenericName=API Client' \
