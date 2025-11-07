@@ -1,0 +1,74 @@
+name: Build
+run-name: Build ${{ inputs.package }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      package:
+        description: Package to build
+        required: true
+        type: string
+
+jobs:
+  build:
+    name: Build
+
+    runs-on: ubuntu-latest
+    container: archlinux:latest
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+      - name: Install basic tools to build Arch Linux packages
+        run: |
+          pacman --sync --noconfirm --noprogressbar \
+            --refresh \
+            --sysupgrade \
+            --needed base-devel
+
+      - name: Check out repository
+        uses: actions/checkout@v5.0.0
+        with:
+          persist-credentials: false
+
+      - name: Set up non-root user
+        env:
+          GITHUB_WORKSPACE: ${{ github.workspace }}
+        run: |
+          set -ux
+
+          # Create 'runner' group and user
+          groupadd \
+            --gid 1001 \
+            runner
+          useradd \
+            --uid 1001 \
+            --gid runner \
+            --home-dir "${GITHUB_WORKSPACE}" \
+            --no-create-home \
+            runner
+
+          # Change ownership of the workspace to 'runner' user
+          chown -R runner:runner "${GITHUB_WORKSPACE}"
+
+          # Allow 'runner' user to use sudo without a password
+          echo "runner ALL=(root) NOPASSWD: ALL" > /etc/sudoers.d/runner
+
+      - name: Build package
+        working-directory: ${{ inputs.package }}
+        run: |
+          set -ux
+
+          # Configure makepkg for parallel compilation
+          export MAKEFLAGS="--jobs=$(nproc)"
+
+          runuser --user runner -- \
+            makepkg --noconfirm --noprogressbar --syncdeps
+
+      - name: Install namcap
+        run: pacman --sync --noconfirm --noprogressbar --needed namcap
+
+      - name: Analyze built package with namcap
+        working-directory: ${{ inputs.package }}
+        run: namcap -i *.pkg.tar.zst
