@@ -69,7 +69,12 @@ placeholders and should be replaced with the actual values.
 All usages of Bash variables (`${var}`) in the following steps are
 placeholders and should be replaced with the actual values.
 
-1. Bump the `pkgver` to the new version and reset `pkgrel` to `1` in the
+1. Pull the latest changes from the AUR repository:
+   ```bash
+   git subtree split --prefix ${package} --rejoin
+   git subtree pull --prefix ${package} ${package} master --message "Merge subtree '${package}'"
+   ```
+2. Bump the `pkgver` to the new version and reset `pkgrel` to `1` in the
    `${package}/PKGBUILD` file. Also update the `pkgdesc` and other info if
    necessary.
    Make sure to read the release notes or changelog of the package to see if
@@ -77,15 +82,15 @@ placeholders and should be replaced with the actual values.
    to be changed.
    > TIP: Changes to GitHub Action release workflows are usually good sources
    > of information about new dependencies, commands and other build steps.
-2. Update the checksums:
+3. Update the checksums:
    ```bash
    updpkgsums ${package}/PKGBUILD
    ```
-3. Check `PKGBUILD` for errors:
+4. Check `PKGBUILD` for errors:
    ```bash
    namcap -i ${package}/PKGBUILD
    ```
-4. Try building the package:
+5. Try building the package:
    ```bash
    makepkg --dir ${package} --force --cleanbuild
    ```
@@ -100,28 +105,29 @@ placeholders and should be replaced with the actual values.
    extra-x86_64-build -c
    cd ..
    ```
-5. Check the package for errors:
+6. Check the package for errors:
    ```bash
    namcap -i ${package}/${package}-${version}-${arch}.pkg.tar.zst
    ```
-6. (Optional) Install the package and test it out:
+7. (Optional) Install the package and test it out:
    ```bash
    makepkg --dir ${package} --install
    ```
-7. Update the `${package}/.SRCINFO` file:
+8. Update the `${package}/.SRCINFO` file:
    ```bash
    makepkg --dir ${package} --printsrcinfo > ${package}/.SRCINFO
    ```
-8. Stage the changes, commit and push them to this repository:
+9. Stage the changes, commit and push them to this repository:
    ```bash
    git add PKGBUILD .SRCINFO
    git commit -m "feat(${package}): update to ${major}.${minor}.${patch}"
    git push
    ```
-9. Push the changes to the AUR repository:
-   ```bash
-   git subtree push --prefix ${package} ${package} master
-   ```
+10. Push the changes to the AUR repository:
+    ```bash
+    git subtree split --prefix ${package} --rejoin
+    git subtree push --prefix ${package} ${package} master
+    ```
 
 ## Bash Snippets
 
