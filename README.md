@@ -194,6 +194,18 @@ makepkg --dir supercronic-bin --printsrcinfo > supercronic-bin/.SRCINFO
 makepkg --dir supercronic-git --printsrcinfo > supercronic-git/.SRCINFO
 ```
 
+### Split subtrees of all packages
+
+```bash
+git subtree split --prefix yaak --rejoin
+git subtree split --prefix yaak-appimage --rejoin
+git subtree split --prefix yaak-bin --rejoin
+git subtree split --prefix yaak-git --rejoin
+git subtree split --prefix supercronic --rejoin
+git subtree split --prefix supercronic-bin --rejoin
+git subtree split --prefix supercronic-git --rejoin
+```
+
 ### Push changes of all packages
 
 ```bash

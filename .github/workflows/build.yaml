@@ -2,6 +2,7 @@ name: Build
 run-name: Build ${{ inputs.package }}
 
 on:
+  # Can currently only be triggered manually
   workflow_dispatch:
     inputs:
       package:
@@ -69,6 +70,6 @@ jobs:
       - name: Install namcap
         run: pacman --sync --noconfirm --noprogressbar --needed namcap
 
-      - name: Analyze built package with namcap
+      - name: Analyze built package
         working-directory: ${{ inputs.package }}
         run: namcap -i *.pkg.tar.zst
