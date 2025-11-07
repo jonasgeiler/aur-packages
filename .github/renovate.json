@@ -15,9 +15,9 @@
     }
   ],
   "customDatasources": {
-    "drsprinto": {
-      "description": "Retrieves the latest DrSprinto version",
-      "defaultRegistryUrlTemplate": "https://static.sprinto.com/drsprinto/latest-linux.yml",
+    "sprinto": {
+      "description": "Retrieves the latest version of Sprinto-hosted binaries",
+      "defaultRegistryUrlTemplate": "https://static.sprinto.com/{{packageName}}/latest-linux.yml",
       "format": "yaml",
       "transformTemplates": [
         "{\"releases\":[{\"version\":$.version,\"releaseTimestamp\":$.releaseDate}]}"
