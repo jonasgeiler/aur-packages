@@ -16,6 +16,7 @@ and update them all at once.
 - [supercronic](https://aur.archlinux.org/packages/supercronic/)
 - [supercronic-bin](https://aur.archlinux.org/packages/supercronic-bin/)
 - [supercronic-git](https://aur.archlinux.org/packages/supercronic-git/)
+- [drsprinto-appimage](https://aur.archlinux.org/packages/drsprinto-appimage/)
 
 ## Development Setup
 
@@ -37,6 +38,7 @@ git remote add yaak-git ssh://aur@aur.archlinux.org/yaak-git.git
 git remote add supercronic ssh://aur@aur.archlinux.org/supercronic.git
 git remote add supercronic-bin ssh://aur@aur.archlinux.org/supercronic-bin.git
 git remote add supercronic-git ssh://aur@aur.archlinux.org/supercronic-git.git
+git remote add drsprinto-appimage ssh://aur@aur.archlinux.org/drsprinto-appimage.git
 ```
 
 Lastly, register the `.githooks` directory as a Git hooks directory:
@@ -144,6 +146,7 @@ git subtree pull --prefix yaak-git yaak-git master --message "Merge subtree 'yaa
 git subtree pull --prefix supercronic supercronic master --message "Merge subtree 'supercronic'"
 git subtree pull --prefix supercronic-bin supercronic-bin master --message "Merge subtree 'supercronic-bin'"
 git subtree pull --prefix supercronic-git supercronic-git master --message "Merge subtree 'supercronic-git'"
+git subtree pull --prefix drsprinto-appimage drsprinto-appimage master --message "Merge subtree 'drsprinto-appimage'"
 ```
 
 ### Update checksums of all packages
@@ -156,6 +159,7 @@ updpkgsums yaak-git/PKGBUILD
 updpkgsums supercronic/PKGBUILD
 updpkgsums supercronic-bin/PKGBUILD
 updpkgsums supercronic-git/PKGBUILD
+updpkgsums drsprinto-appimage/PKGBUILD
 ```
 
 ### Check `PKGBUILD` of all packages
@@ -168,6 +172,7 @@ namcap -i yaak-git/PKGBUILD
 namcap -i supercronic/PKGBUILD
 namcap -i supercronic-bin/PKGBUILD
 namcap -i supercronic-git/PKGBUILD
+namcap -i drsprinto-appimage/PKGBUILD
 ```
 
 ### Build all packages
@@ -180,6 +185,7 @@ makepkg --dir yaak-git --force --cleanbuild
 makepkg --dir supercronic --force --cleanbuild
 makepkg --dir supercronic-bin --force --cleanbuild
 makepkg --dir supercronic-git --force --cleanbuild
+makepkg --dir drsprinto-appimage --force --cleanbuild
 ```
 
 ### Update `.SRCINFO` of all packages
@@ -192,6 +198,7 @@ makepkg --dir yaak-git --printsrcinfo > yaak-git/.SRCINFO
 makepkg --dir supercronic --printsrcinfo > supercronic/.SRCINFO
 makepkg --dir supercronic-bin --printsrcinfo > supercronic-bin/.SRCINFO
 makepkg --dir supercronic-git --printsrcinfo > supercronic-git/.SRCINFO
+makepkg --dir drsprinto-appimage --printsrcinfo > drsprinto-appimage/.SRCINFO
 ```
 
 ### Split subtrees of all packages
@@ -204,6 +211,7 @@ git subtree split --prefix yaak-git --rejoin
 git subtree split --prefix supercronic --rejoin
 git subtree split --prefix supercronic-bin --rejoin
 git subtree split --prefix supercronic-git --rejoin
+git subtree split --prefix drsprinto-appimage --rejoin
 ```
 
 ### Push changes of all packages
@@ -216,6 +224,7 @@ git subtree push --prefix yaak-git yaak-git master
 git subtree push --prefix supercronic supercronic master
 git subtree push --prefix supercronic-bin supercronic-bin master
 git subtree push --prefix supercronic-git supercronic-git master
+git subtree push --prefix drsprinto-appimage drsprinto-appimage master
 ```
 
 ## Reference Links
