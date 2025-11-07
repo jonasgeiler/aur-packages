@@ -1,6 +1,6 @@
 # Maintainer: Jonas Geiler <aur@jonasgeiler.com>
 pkgname=drsprinto-appimage
-# renovate: datasource=drsprinto
+# renovate: datasource=drsprinto depName=drsprinto
 pkgver=4.0.8
 pkgrel=1
 pkgdesc='Reports device health and compliance status to the Sprinto employee portal (AppImage version)'

@@ -16,7 +16,7 @@
   ],
   "customDatasources": {
     "drsprinto": {
-      "description": "Retrieves the latest Dr. Sprinto version",
+      "description": "Retrieves the latest DrSprinto version",
       "defaultRegistryUrlTemplate": "https://static.sprinto.com/drsprinto/latest-linux.yml",
       "format": "yaml",
       "transformTemplates": [
