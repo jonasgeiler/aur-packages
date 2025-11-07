@@ -1,0 +1,19 @@
+pkgbase = drsprinto-appimage
+	pkgdesc = Reports device health and compliance status to the Sprinto employee portal (AppImage version)
+	pkgver = 4.0.8
+	pkgrel = 1
+	url = https://sprinto.com/
+	arch = x86_64
+	license = LicenseRef-unknown
+	depends = hicolor-icon-theme
+	depends = zlib
+	provides = drsprinto
+	conflicts = drsprinto
+	conflicts = drsprinto-bin
+	conflicts = drsprinto-git
+	options = !strip
+	options = !emptydirs
+	source_x86_64 = drsprinto-appimage-4.0.8.AppImage::https://static.sprinto.com/drsprinto/DrSprinto-4.0.8.AppImage
+	b2sums_x86_64 = 23ccb3dd57ed7a3cff179f2f8f5af17685c2cc791f3f0ec7d57732c93df92c7c7e037d5cbec67fa6ee5d5716a922489a49fe6fef310081ffd7fd4b816874f414
+
+pkgname = drsprinto-appimage
