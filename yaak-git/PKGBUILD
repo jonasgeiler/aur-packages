@@ -1,7 +1,7 @@
 # Maintainer: Jonas Geiler <aur@jonasgeiler.com>
 # Maintainer: SoftExpert <softexpert at gmail dot com>
 pkgname=yaak-git
-pkgver=2025.4.0.r0.gaadfbfd
+pkgver=2025.8.2.r0.g6f0d4ad
 pkgrel=1
 pkgdesc='Fast, offline and Git-friendly API client for HTTP, GraphQL, WebSockets, SSE, and gRPC (Development version)'
 arch=(aarch64 armv7h i686 pentium4 x86_64)
@@ -33,7 +33,8 @@ makedepends=(
 	librsvg              # Tauri
 	nodejs               # Custom scripts & web build
 	npm                  # Node dependencies & web build
-	protobuf             # Yaak
+	protobuf             # Yaak (needs protoc)
+	rust-wasm            # Yaak
 )
 provides=(yaak yaak-app)
 conflicts=(
@@ -72,9 +73,11 @@ build() {
 
 	cd "${srcdir}/yaak/"
 	npm ci
-	npm run build
+	npm run bootstrap
+	npm run lint
+	npm test
 	npm run replace-version
-	npm run tauri build -- --bundles deb --config '{ "bundle": { "createUpdaterArtifacts": false } }'
+	npm run tauri build -- --bundles deb
 
 	sed -e 's|Name=yaak|Name=Yaak|' \
 		-e '$aGenericName=API Client' \
