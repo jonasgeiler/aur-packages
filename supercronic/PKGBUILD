@@ -1,7 +1,7 @@
 # Maintainer: Jonas Geiler <aur@jonasgeiler.com>
 pkgname=supercronic
 # renovate: datasource=github-releases depName=aptible/supercronic
-pkgver=0.2.36
+pkgver=0.2.39
 pkgrel=1
 pkgdesc='A crontab-compatible job runner, designed specifically to run in containers'
 arch=(aarch64 arm armv6h armv7h i686 pentium4 riscv64 x86_64)
