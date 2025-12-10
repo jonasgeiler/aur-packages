@@ -20,7 +20,7 @@ options=(
 	!emptydirs # Remove empty directories from package because why not
 )
 source=("supercronic::git+https://github.com/aptible/supercronic.git#tag=v${pkgver}")
-b2sums=('85767276b7da9b2142fe5df6109daf53298ab6dd428ff057c85458eda43a2170e2d980bc8f2486949d2902f3b0ede689e1fd919275872d635c86372bd91b1eb1')
+b2sums=('7356567f6208559699b3d92d26e85141bc4dc4be1a288b5f2a3797dcb36eac477f388b66793e12b1c507044df25f12e4275a615e495c522d1200cc789cba25c4')
 
 build() {
 	export GOPATH="${srcdir}/gopath/"
