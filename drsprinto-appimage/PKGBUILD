@@ -2,7 +2,7 @@
 pkgname=drsprinto-appimage
 # renovate: datasource=custom.sprinto depName=DrSprinto packageName=drsprinto
 pkgver=4.0.8
-pkgrel=1
+pkgrel=2
 pkgdesc='Reports device health and compliance status to the Sprinto employee portal (AppImage version)'
 arch=(x86_64)
 url='https://sprinto.com/'
@@ -11,6 +11,10 @@ depends=(
 	# As reported by namcap
 	hicolor-icon-theme
 	zlib
+
+	# As reported by users
+	lsb-release
+	inetutils
 )
 provides=(drsprinto)
 conflicts=(
