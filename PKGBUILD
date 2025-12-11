@@ -2,8 +2,8 @@
 # Maintainer: SoftExpert <softexpert at gmail dot com>
 pkgname=yaak
 # renovate: datasource=github-releases depName=getyaak/app
-pkgver=2025.8.2
-pkgrel=2
+pkgver=2025.9.2
+pkgrel=1
 pkgdesc='Fast, offline and Git-friendly API client for HTTP, GraphQL, WebSockets, SSE, and gRPC'
 arch=(aarch64 armv7h i686 pentium4 x86_64)
 url='https://yaak.app/'
@@ -36,6 +36,7 @@ makedepends=(
 	npm                  # Node dependencies & web build
 	protobuf             # Yaak (needs protoc)
 	rust-wasm            # Yaak
+	wasm-pack            # Yaak
 )
 provides=(yaak-app)
 conflicts=(
@@ -50,7 +51,7 @@ options=(
 	!emptydirs # Remove empty directories from package because why not
 )
 source=("yaak::git+https://github.com/mountain-loop/yaak.git#tag=v${pkgver}")
-b2sums=('121134b3c4212b33328aba31634b445b4df15159ef93f0f1aa7723b62e2c899e12583713f7aacfc6442399d7d0264cd9dc3b2ed958fb603bcd400a34da36fdc5')
+b2sums=('fe45a8c83eec2d040be5692de7722043bc06d016369d9b35a333aaa82805b74dccf43cf090a0acca697366a6a5ea37297c4566c1db92b5b1f6f8f959aedfda9d')
 
 build() {
 	export YAAK_VERSION="${pkgver}"
