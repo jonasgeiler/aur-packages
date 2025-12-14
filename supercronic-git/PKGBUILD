@@ -1,4 +1,5 @@
 # Maintainer: Jonas Geiler <aur@jonasgeiler.com>
+# Maintainer: Rafael Baboni Dominiquini <rafaeldominiquini at gmail dot com>
 # Contributor: krevedko
 pkgname=supercronic-git
 pkgver=0.2.33.r0.gcca6b3a
