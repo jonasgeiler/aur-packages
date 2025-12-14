@@ -139,14 +139,14 @@ root of the repository.
 ### Pull new changes of all packages
 
 ```bash
-git subtree pull --prefix yaak yaak master --message "Merge subtree 'yaak'"
-git subtree pull --prefix yaak-appimage yaak-appimage master --message "Merge subtree 'yaak-appimage'"
-git subtree pull --prefix yaak-bin yaak-bin master --message "Merge subtree 'yaak-bin'"
-git subtree pull --prefix yaak-git yaak-git master --message "Merge subtree 'yaak-git'"
-git subtree pull --prefix supercronic supercronic master --message "Merge subtree 'supercronic'"
-git subtree pull --prefix supercronic-bin supercronic-bin master --message "Merge subtree 'supercronic-bin'"
-git subtree pull --prefix supercronic-git supercronic-git master --message "Merge subtree 'supercronic-git'"
-git subtree pull --prefix drsprinto-appimage drsprinto-appimage master --message "Merge subtree 'drsprinto-appimage'"
+git subtree split --prefix yaak --rejoin && git subtree pull --prefix yaak yaak master --message "Merge subtree 'yaak'"
+git subtree split --prefix yaak-appimage --rejoin && git subtree pull --prefix yaak-appimage yaak-appimage master --message "Merge subtree 'yaak-appimage'"
+git subtree split --prefix yaak-bin --rejoin && git subtree pull --prefix yaak-bin yaak-bin master --message "Merge subtree 'yaak-bin'"
+git subtree split --prefix yaak-git --rejoin && git subtree pull --prefix yaak-git yaak-git master --message "Merge subtree 'yaak-git'"
+git subtree split --prefix supercronic --rejoin && git subtree pull --prefix supercronic supercronic master --message "Merge subtree 'supercronic'"
+git subtree split --prefix supercronic-bin --rejoin && git subtree pull --prefix supercronic-bin supercronic-bin master --message "Merge subtree 'supercronic-bin'"
+git subtree split --prefix supercronic-git --rejoin && git subtree pull --prefix supercronic-git supercronic-git master --message "Merge subtree 'supercronic-git'"
+git subtree split --prefix drsprinto-appimage --rejoin && git subtree pull --prefix drsprinto-appimage drsprinto-appimage master --message "Merge subtree 'drsprinto-appimage'"
 ```
 
 ### Update checksums of all packages
@@ -217,14 +217,14 @@ git subtree split --prefix drsprinto-appimage --rejoin
 ### Push changes of all packages
 
 ```bash
-git subtree push --prefix yaak yaak master
-git subtree push --prefix yaak-appimage yaak-appimage master
-git subtree push --prefix yaak-bin yaak-bin master
-git subtree push --prefix yaak-git yaak-git master
-git subtree push --prefix supercronic supercronic master
-git subtree push --prefix supercronic-bin supercronic-bin master
-git subtree push --prefix supercronic-git supercronic-git master
-git subtree push --prefix drsprinto-appimage drsprinto-appimage master
+git subtree split --prefix yaak --rejoin && git subtree push --prefix yaak yaak master
+git subtree split --prefix yaak-appimage --rejoin && git subtree push --prefix yaak-appimage yaak-appimage master
+git subtree split --prefix yaak-bin --rejoin && git subtree push --prefix yaak-bin yaak-bin master
+git subtree split --prefix yaak-git --rejoin && git subtree push --prefix yaak-git yaak-git master
+git subtree split --prefix supercronic --rejoin && git subtree push --prefix supercronic supercronic master
+git subtree split --prefix supercronic-bin --rejoin && git subtree push --prefix supercronic-bin supercronic-bin master
+git subtree split --prefix supercronic-git --rejoin && git subtree push --prefix supercronic-git supercronic-git master
+git subtree split --prefix drsprinto-appimage --rejoin && git subtree push --prefix drsprinto-appimage drsprinto-appimage master
 ```
 
 ## Reference Links
