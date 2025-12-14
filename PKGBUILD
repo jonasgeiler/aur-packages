@@ -1,4 +1,5 @@
 # Maintainer: Jonas Geiler <aur@jonasgeiler.com>
+# Maintainer: Rafael Baboni Dominiquini <rafaeldominiquini at gmail dot com>
 pkgname=supercronic-bin
 # renovate: datasource=github-releases depName=aptible/supercronic
 pkgver=0.2.40
