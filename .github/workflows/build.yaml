@@ -10,6 +10,12 @@ on:
         required: true
         type: string
 
+      upload-built-package:
+        description: Upload built package as an artifact
+        required: false
+        type: boolean
+        default: false
+
 jobs:
   build:
     name: Build
@@ -73,3 +79,13 @@ jobs:
       - name: Analyze built package
         working-directory: ${{ inputs.package }}
         run: namcap -i *.pkg.tar.zst
+
+      - if: inputs.upload-built-package == true
+        name: Upload built package as an artifact
+        uses: actions/upload-artifact@v6.0.0
+        with:
+          name: ${{ inputs.package }}-package
+          path: '${{ inputs.package }}/*.pkg.tar.zst'
+          if-no-files-found: error
+          compression-level: 0 # It's already compressed
+          retention-days: 7
