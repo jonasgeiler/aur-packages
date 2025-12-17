@@ -10,12 +10,6 @@ on:
         required: true
         type: string
 
-      upload-built-package:
-        description: Upload built package as an artifact
-        required: false
-        type: boolean
-        default: false
-
 jobs:
   build:
     name: Build
@@ -80,8 +74,7 @@ jobs:
         working-directory: ${{ inputs.package }}
         run: namcap -i *.pkg.tar.zst
 
-      - if: inputs.upload-built-package == true
-        id: upload-built-package
+      - id: upload-built-package
         name: Upload built package as an artifact
         uses: actions/upload-artifact@v6.0.0
         with:
@@ -95,8 +88,6 @@ jobs:
       built-package-artifact-id: ${{ steps.upload-built-package.outputs.artifact-id }}
 
   smoke-test:
-    # TODO: Base on "run-command" input when that is implemented
-    if: inputs.upload-built-package == true
     needs: build
 
     name: Smoke Test
