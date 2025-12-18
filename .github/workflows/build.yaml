@@ -7,8 +7,35 @@ on:
     inputs:
       package:
         description: Package to build
+        type: choice
         required: true
+        options:
+          - drsprinto-appimage
+          - supercronic
+          - supercronic-bin
+          - supercronic-git
+          - yaak
+          - yaak-appimage
+          - yaak-bin
+          - yaak-git
+
+      smoke-test-command:
+        description: Bash command to run for smoke test after building the package
         type: string
+        required: false
+        default: ''
+
+      smoke-test-duration:
+        description: Maximum duration in seconds to run the smoke test command
+        type: number
+        required: false
+        default: 15
+
+      smoke-test-virtual-display:
+        description: Run the smoke test command with a virtual display using Xvfb
+        type: boolean
+        required: false
+        default: false
 
 jobs:
   build:
@@ -112,3 +139,40 @@ jobs:
 
       - name: Install built package
         run: pacman --upgrade --noconfirm --noprogressbar --needed *.pkg.tar.zst
+
+      - if: inputs.smoke-test-command != '' && inputs.smoke-test-virtual-display != true
+        name: Run smoke test command
+        env:
+          SMOKE_TEST_COMMAND: ${{ inputs.smoke-test-command }}
+          SMOKE_TEST_DURATION: ${{ inputs.smoke-test-duration }}
+        run: |
+          set -ux
+
+          TIMEOUT="${SMOKE_TEST_DURATION}s"
+          KILL_AFTER="$((SMOKE_TEST_DURATION * 2))s"
+
+          # Run the smoke test command with a timeout
+          timeout --preserve-status --kill-after="${KILL_AFTER}" "${TIMEOUT}" \
+            bash --noprofile --norc -euxo pipefail -c "${SMOKE_TEST_COMMAND}"
+
+      - if: inputs.smoke-test-command != '' && inputs.smoke-test-virtual-display == true
+        name: Run smoke test command with virtual display
+        env:
+          SMOKE_TEST_COMMAND: ${{ inputs.smoke-test-command }}
+          SMOKE_TEST_DURATION: ${{ inputs.smoke-test-duration }}
+        run: |
+          set -ux
+
+          TIMEOUT="${SMOKE_TEST_DURATION}s"
+          KILL_AFTER="$((SMOKE_TEST_DURATION * 2))s"
+
+          # Install virtual framebuffer X server
+          pacman --sync --noconfirm --noprogressbar --needed xorg-server-xvfb
+
+          # When the script exits, print any Xvfb errors
+          trap "cat /tmp/xvfb-run-error.txt && rm --force /tmp/xvfb-run-error.txt" EXIT INT TERM QUIT
+
+          # Run the smoke test command with Xvfb and a timeout
+          xvfb-run --auto-servernum --error-file=/tmp/xvfb-run-error.txt -- \
+            timeout --preserve-status --kill-after="${KILL_AFTER}" "${TIMEOUT}" \
+              bash --noprofile --norc -euxo pipefail -c "${SMOKE_TEST_COMMAND}"
