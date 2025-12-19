@@ -2,7 +2,7 @@
 pkgname=drsprinto-appimage
 # renovate: datasource=custom.sprinto depName=DrSprinto packageName=drsprinto
 pkgver=4.0.8
-pkgrel=3
+pkgrel=4
 pkgdesc='Reports device health and compliance status to the Sprinto employee portal (AppImage version)'
 arch=(x86_64)
 url='https://sprinto.com/'
@@ -12,7 +12,12 @@ depends=(
 	hicolor-icon-theme
 
 	# As determined by maintainers
+	alsa-lib
+	at-spi2-core
 	fuse2
+	gtk3
+	libcups
+	nss
 	zlib
 
 	# As reported by users
