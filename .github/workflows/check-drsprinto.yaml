@@ -18,5 +18,5 @@ jobs:
     uses: ./.github/workflows/check.yaml
     with:
       package: ${{ inputs.package }}
-      smoke-test-command: drsprinto
+      smoke-test-command: ${{ inputs.package == 'drsprinto-appimage' && 'modprobe fuse && drsprinto' || 'drsprinto' }}
       smoke-test-virtual-display: true
