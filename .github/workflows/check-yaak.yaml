@@ -1,4 +1,4 @@
-name: Check supercronic
+name: Check yaak
 run-name: Check ${{ inputs.package }}
 
 # Can currently only be triggered manually
@@ -10,15 +10,16 @@ on:
         type: choice
         required: true
         options:
-          - supercronic
-          - supercronic-bin
-          - supercronic-git
+          - yaak
+          - yaak-appimage
+          - yaak-bin
+          - yaak-git
 
 jobs:
-  supercronic:
+  yaak:
     name: ${{ inputs.package }}
     uses: ./.github/workflows/check.yaml
     with:
       package: ${{ inputs.package }}
-      smoke-test-command: echo "* * * * * * * echo test" > crontab && supercronic crontab
-      smoke-test-duration: 10
+      smoke-test-command: yaak-app || { _c=$?; [ $_c -eq 143 ] || exit $_c; }
+      smoke-test-virtual-display: true
