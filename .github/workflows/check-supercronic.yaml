@@ -1,0 +1,23 @@
+name: Check supercronic
+run-name: Check ${{ inputs.package }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      package:
+        description: Package
+        type: choice
+        required: true
+        options:
+          - supercronic
+          - supercronic-bin
+          - supercronic-git
+
+jobs:
+  supercronic:
+    name: ${{ inputs.package }}
+    uses: ./.github/workflows/check.yaml
+    with:
+      package: ${{ inputs.package }}
+      smoke-test-command: echo "* * * * * * * echo test" > crontab && supercronic crontab
+      smoke-test-duration: 10

@@ -1,12 +1,12 @@
-name: Build
-run-name: Build ${{ inputs.package }}
+name: Check
+run-name: Check ${{ inputs.package }}
 
+# Can currently only be triggered manually or called from another workflow
 on:
-  # Can currently only be triggered manually
   workflow_dispatch:
     inputs:
       package:
-        description: Package to build
+        description: Package
         type: choice
         required: true
         options:
@@ -20,7 +20,32 @@ on:
           - yaak-git
 
       smoke-test-command:
-        description: Bash command to run for smoke test after building the package
+        description: Bash command to run for smoke test
+        type: string
+        required: false
+        default: ''
+
+      smoke-test-duration:
+        description: Maximum duration in seconds to run the smoke test command
+        type: number
+        required: false
+        default: 15
+
+      smoke-test-virtual-display:
+        description: Run the smoke test command with a virtual display using Xvfb
+        type: boolean
+        required: false
+        default: false
+
+  workflow_call:
+    inputs:
+      package:
+        description: Package
+        type: string
+        required: true
+
+      smoke-test-command:
+        description: Bash command to run for smoke test
         type: string
         required: false
         default: ''
