@@ -134,6 +134,30 @@ jobs:
       - name: Install built package
         run: pacman --upgrade --noconfirm --noprogressbar --needed *.pkg.tar.zst
 
+      - name: Set up non-root user
+        env:
+          GITHUB_WORKSPACE: ${{ github.workspace }}
+        run: |
+          set -ux
+
+          # Create 'runner' group and user
+          groupadd \
+            --gid 1001 \
+            runner
+          useradd \
+            --uid 1001 \
+            --gid runner \
+            --home-dir "${GITHUB_WORKSPACE}" \
+            --no-create-home \
+            runner
+
+          # Change ownership of the workspace to 'runner' user
+          chown -R runner:runner "${GITHUB_WORKSPACE}"
+
+          # Allow 'runner' user to use sudo without a password
+          mkdir -p --mode=755 /etc/sudoers.d
+          echo "runner ALL=(root) NOPASSWD: ALL" > /etc/sudoers.d/runner
+
       - if: inputs.smoke-test-command != '' && inputs.smoke-test-virtual-display != true
         name: Run smoke test command
         env:
@@ -146,8 +170,9 @@ jobs:
           KILL_AFTER="$((SMOKE_TEST_DURATION * 2))s"
 
           # Run the smoke test command with a timeout
-          timeout --preserve-status --kill-after="${KILL_AFTER}" "${TIMEOUT}" \
-            bash --noprofile --norc -euxo pipefail -c "${SMOKE_TEST_COMMAND}"
+          runuser --user runner -- \
+            timeout --preserve-status --kill-after="${KILL_AFTER}" "${TIMEOUT}" \
+              bash --noprofile --norc -euxo pipefail -c "${SMOKE_TEST_COMMAND}"
 
       - if: inputs.smoke-test-command != '' && inputs.smoke-test-virtual-display == true
         name: Run smoke test command with virtual display
@@ -168,5 +193,6 @@ jobs:
 
           # Run the smoke test command with Xvfb and a timeout
           xvfb-run --auto-servernum --error-file=/tmp/xvfb-run-error.txt -- \
-            timeout --preserve-status --kill-after="${KILL_AFTER}" "${TIMEOUT}" \
-              bash --noprofile --norc -uxo pipefail -c "${SMOKE_TEST_COMMAND}"
+            runuser --user runner -- \
+              timeout --preserve-status --kill-after="${KILL_AFTER}" "${TIMEOUT}" \
+                bash --noprofile --norc -uxo pipefail -c "${SMOKE_TEST_COMMAND}"
