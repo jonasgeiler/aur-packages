@@ -1,0 +1,22 @@
+name: Check drsprinto
+run-name: Check ${{ inputs.package }}
+
+# Can currently only be triggered manually
+on:
+  workflow_dispatch:
+    inputs:
+      package:
+        description: Package
+        type: choice
+        required: true
+        options:
+          - drsprinto-appimage
+
+jobs:
+  drsprinto:
+    name: ${{ inputs.package }}
+    uses: ./.github/workflows/check.yaml
+    with:
+      package: ${{ inputs.package }}
+      smoke-test-command: drsprinto
+      smoke-test-virtual-display: true
