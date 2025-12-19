@@ -126,6 +126,9 @@ jobs:
             --refresh \
             --sysupgrade
 
+          # Ensure machine-id exists for dbus
+          dbus-uuidgen > /etc/machine-id
+
       - name: Download built package artifact
         uses: actions/download-artifact@v7.0.0
         with:
