@@ -3,7 +3,7 @@
 pkgname=yaak
 # renovate: datasource=github-releases depName=getyaak/app
 pkgver=2026.1.0
-pkgrel=1
+pkgrel=2
 pkgdesc='Fast, offline and Git-friendly API client for HTTP, GraphQL, WebSockets, SSE, and gRPC'
 arch=(aarch64 armv7h i686 pentium4 x86_64)
 url='https://yaak.app/'
@@ -55,7 +55,7 @@ b2sums=('dd95df94dd785ed9450656ac5c8cafc019f0913b3c546e937361f8dcde6a3a17a54ffed
 
 build() {
 	export YAAK_VERSION="${pkgver}"
-	export TAURI_APP_PATH="${srcdir}/yaak/src-tauri/"
+	export TAURI_APP_PATH="${srcdir}/yaak/crates-tauri/"
 	export CI=true
 
 	cd "${srcdir}/yaak/"
@@ -65,12 +65,12 @@ build() {
 
 	sed -e 's|Name=yaak|Name=Yaak|' \
 		-e '$aGenericName=API Client' \
-		-i "${srcdir}/yaak/src-tauri/target/release/bundle/deb/yaak_${pkgver}_"*/data/usr/share/applications/yaak.desktop
+		-i "${srcdir}/yaak/target/release/bundle/deb/yaak_${pkgver}_"*/data/usr/share/applications/yaak.desktop
 }
 
 package() {
 	cp -a \
-		"${srcdir}/yaak/src-tauri/target/release/bundle/deb/yaak_${pkgver}_"*/data/usr/ \
+		"${srcdir}/yaak/target/release/bundle/deb/yaak_${pkgver}_"*/data/usr/ \
 		"${pkgdir}/usr/"
 	install -Dm644 \
 		"${srcdir}/yaak/LICENSE" \
