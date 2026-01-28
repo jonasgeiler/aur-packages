@@ -1,0 +1,5 @@
+[supercronic-bin]
+source = "github"
+github = "aptible/supercronic"
+use_latest_release = true
+prefix = "v"
