@@ -107,10 +107,7 @@ jobs:
     name: Smoke Test
 
     runs-on: ubuntu-latest
-    container:
-      image: archlinux:latest@sha256:4585b6322b40a28877dbe2363c7281dd046d9289300a36f58edc207ed1c8db90
-      # Support FUSE for AppImage smoke tests
-      options: --cap-add=SYS_ADMIN --cap-add=MKNOD --device=/dev/fuse:mrw --privileged
+    container: archlinux:latest@sha256:4585b6322b40a28877dbe2363c7281dd046d9289300a36f58edc207ed1c8db90
     defaults:
       run:
         shell: bash --noprofile --norc -euxo pipefail {0}
@@ -165,9 +162,20 @@ jobs:
           KILL_AFTER="$((SMOKE_TEST_DURATION * 2))s"
 
           # Run the smoke test command with a timeout
+          set +e
           runuser --user runner -- \
             timeout --kill-after="${KILL_AFTER}" "${TIMEOUT}" \
               bash --noprofile --norc -euxo pipefail -c "${SMOKE_TEST_COMMAND}"
+          exit_status=$?
+          set -e
+
+          # Regular timeout is considered success (kill-after is failure)
+          if [ "${exit_status}" -eq 124 ]; then
+            : "Smoke test command timed out regularly after ${TIMEOUT}."
+            exit 0
+          else
+            exit "${exit_status}"
+          fi
 
       - if: inputs.smoke-test-command != '' && inputs.smoke-test-virtual-display == true
         name: Run smoke test command with virtual display
@@ -185,7 +193,18 @@ jobs:
           trap "cat /tmp/xvfb-run-error.txt && rm --force /tmp/xvfb-run-error.txt" EXIT INT TERM QUIT
 
           # Run the smoke test command with Xvfb and a timeout
+          set +e
           xvfb-run --auto-servernum --error-file=/tmp/xvfb-run-error.txt -- \
             runuser --user runner -- \
               timeout --kill-after="${KILL_AFTER}" "${TIMEOUT}" \
                 bash --noprofile --norc -euxo pipefail -c "${SMOKE_TEST_COMMAND}"
+          exit_status=$?
+          set -e
+
+          # Regular timeout is considered success (kill-after is failure)
+          if [ "${exit_status}" -eq 124 ]; then
+            : "Smoke test command timed out regularly after ${TIMEOUT}."
+            exit 0
+          else
+            exit "${exit_status}"
+          fi
