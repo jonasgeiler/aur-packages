@@ -3,15 +3,18 @@
 pkgname=yaak-appimage
 # renovate: datasource=github-releases depName=getyaak/app
 pkgver=2026.1.0
-pkgrel=1
+pkgrel=2
 pkgdesc='Fast, offline and Git-friendly API client for HTTP, GraphQL, WebSockets, SSE, and gRPC (AppImage version)'
 arch=(x86_64)
 url='https://yaak.app/'
 license=(MIT)
 depends=(
 	# As reported by namcap
-	glibc
 	hicolor-icon-theme
+
+	# As determined by maintainers
+	fontconfig
+	fuse2
 	zlib
 )
 provides=(yaak yaak-app)
