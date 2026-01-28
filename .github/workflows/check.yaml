@@ -36,7 +36,7 @@ jobs:
     container: archlinux:latest@sha256:4585b6322b40a28877dbe2363c7281dd046d9289300a36f58edc207ed1c8db90
     defaults:
       run:
-        shell: bash
+        shell: bash --noprofile --norc -euxo pipefail {0}
 
     steps:
       - name: Bring system up to date and install basic tools to build Arch Linux packages
@@ -55,8 +55,6 @@ jobs:
         env:
           GITHUB_WORKSPACE: ${{ github.workspace }}
         run: |
-          set -ux
-
           # Create 'runner' group and user
           groupadd \
             --gid 1001 \
@@ -77,8 +75,6 @@ jobs:
       - name: Build package
         working-directory: ${{ inputs.package }}
         run: |
-          set -ux
-
           # Configure makepkg for parallel compilation
           export MAKEFLAGS="--jobs=$(nproc)"
 
@@ -117,7 +113,7 @@ jobs:
       options: --cap-add=SYS_ADMIN --cap-add=MKNOD --device=/dev/fuse:mrw --privileged
     defaults:
       run:
-        shell: bash
+        shell: bash --noprofile --norc -euxo pipefail {0}
 
     steps:
       - name: Bring system up to date
@@ -141,8 +137,6 @@ jobs:
         env:
           GITHUB_WORKSPACE: ${{ github.workspace }}
         run: |
-          set -ux
-
           # Create 'runner' group and user
           groupadd \
             --gid 1001 \
@@ -167,8 +161,6 @@ jobs:
           SMOKE_TEST_COMMAND: ${{ inputs.smoke-test-command }}
           SMOKE_TEST_DURATION: ${{ inputs.smoke-test-duration }}
         run: |
-          set -ux
-
           TIMEOUT="${SMOKE_TEST_DURATION}s"
           KILL_AFTER="$((SMOKE_TEST_DURATION * 2))s"
 
@@ -183,8 +175,6 @@ jobs:
           SMOKE_TEST_COMMAND: ${{ inputs.smoke-test-command }}
           SMOKE_TEST_DURATION: ${{ inputs.smoke-test-duration }}
         run: |
-          set -ux
-
           TIMEOUT="${SMOKE_TEST_DURATION}s"
           KILL_AFTER="$((SMOKE_TEST_DURATION * 2))s"
 
