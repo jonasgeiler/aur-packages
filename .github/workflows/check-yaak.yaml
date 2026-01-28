@@ -21,5 +21,5 @@ jobs:
     uses: ./.github/workflows/check.yaml
     with:
       package: ${{ inputs.package }}
-      smoke-test-command: yaak-app || { _c=$?; [ $_c -eq 143 ] || exit $_c; }
+      smoke-test-command: trap 'c=$?; [ $c -eq 143 ] && exit 0 || exit $c' EXIT; yaak-app
       smoke-test-virtual-display: true
