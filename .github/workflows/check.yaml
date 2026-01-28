@@ -107,7 +107,10 @@ jobs:
     name: Smoke Test
 
     runs-on: ubuntu-latest
-    container: archlinux:latest@sha256:4585b6322b40a28877dbe2363c7281dd046d9289300a36f58edc207ed1c8db90
+    container:
+      image: archlinux:latest@sha256:4585b6322b40a28877dbe2363c7281dd046d9289300a36f58edc207ed1c8db90
+      # Support FUSE for AppImage smoke tests
+      options: --cap-add=SYS_ADMIN --cap-add=MKNOD --device=/dev/fuse:mrw --privileged
     defaults:
       run:
         shell: bash --noprofile --norc -euxo pipefail {0}
