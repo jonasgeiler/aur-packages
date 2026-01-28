@@ -166,7 +166,7 @@ jobs:
 
           # Run the smoke test command with a timeout
           runuser --user runner -- \
-            timeout --preserve-status --kill-after="${KILL_AFTER}" "${TIMEOUT}" \
+            timeout --kill-after="${KILL_AFTER}" "${TIMEOUT}" \
               bash --noprofile --norc -euxo pipefail -c "${SMOKE_TEST_COMMAND}"
 
       - if: inputs.smoke-test-command != '' && inputs.smoke-test-virtual-display == true
@@ -187,5 +187,5 @@ jobs:
           # Run the smoke test command with Xvfb and a timeout
           xvfb-run --auto-servernum --error-file=/tmp/xvfb-run-error.txt -- \
             runuser --user runner -- \
-              timeout --preserve-status --kill-after="${KILL_AFTER}" "${TIMEOUT}" \
-                bash --noprofile --norc -uxo pipefail -c "${SMOKE_TEST_COMMAND}"
+              timeout --kill-after="${KILL_AFTER}" "${TIMEOUT}" \
+                bash --noprofile --norc -euxo pipefail -c "${SMOKE_TEST_COMMAND}"
