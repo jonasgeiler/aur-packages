@@ -33,7 +33,7 @@ jobs:
     name: Build
 
     runs-on: ubuntu-latest
-    container: archlinux:latest@sha256:4585b6322b40a28877dbe2363c7281dd046d9289300a36f58edc207ed1c8db90
+    container: archlinux:latest@sha256:bb1e5dd58eb79755e736ac530292074f4408572c0fbc4306cd62b431fdf356f0
     defaults:
       run:
         shell: bash --noprofile --norc -euxo pipefail {0}
@@ -108,7 +108,7 @@ jobs:
 
     runs-on: ubuntu-latest
     container:
-      image: archlinux:latest@sha256:4585b6322b40a28877dbe2363c7281dd046d9289300a36f58edc207ed1c8db90
+      image: archlinux:latest@sha256:bb1e5dd58eb79755e736ac530292074f4408572c0fbc4306cd62b431fdf356f0
       # Support FUSE for AppImage smoke tests
       options: --cap-add=SYS_ADMIN --cap-add=MKNOD --device=/dev/fuse:mrw --privileged
     defaults:
