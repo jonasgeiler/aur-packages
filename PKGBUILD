@@ -2,7 +2,7 @@
 # Maintainer: SoftExpert <softexpert at gmail dot com>
 pkgname=yaak
 # renovate: datasource=github-releases depName=getyaak/app
-pkgver=2026.3.0
+pkgver=2026.3.1
 pkgrel=1
 pkgdesc='Fast, offline and Git-friendly API client for HTTP, GraphQL, WebSockets, SSE, and gRPC'
 arch=(aarch64 armv7h i686 pentium4 x86_64)
@@ -51,7 +51,7 @@ options=(
 	!emptydirs # Remove empty directories from package because why not
 )
 source=("yaak::git+https://github.com/mountain-loop/yaak.git#tag=v${pkgver}")
-b2sums=('058e4c50663f0914089e4fbaeb6398a6baea58811372b01e231b853c1e1ed26ace2bfcf450f7df4b48d47d593164d8ce8691420eb5b5cf167a427f9fae7009ef')
+b2sums=('0398303364d940912ebe10e0aa755ac312189cbbd4bc33f1e9cca393596caddf04af8bb5f0fdcc61b7cf666fc7f602a044c18e1863dcf5cd92901899dceeef89')
 
 build() {
 	export YAAK_VERSION="${pkgver}"
