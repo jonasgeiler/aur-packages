@@ -3,6 +3,15 @@
   "extends": [
     "github>jonasgeiler/renovate-config"
   ],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["/(^|/)PKGBUILD$/"],
+      "matchStrings": [
+        "# renovate: datasource=(?<datasource>[a-z-.]+?) depName=(?<depName>[^\\s]+?)(?: (?:lookupName|packageName)=(?<packageName>[^\\s]+?))?(?: versioning=(?<versioning>[^\\s]+?))?(?: extractVersion=(?<extractVersion>[^\\s]+?))?(?: registryUrl=(?<registryUrl>[^\\s]+?))?\\s+pkgver\\s*=\\s*[\"']?(?<currentValue>.+?)[\"']?\\s"
+      ]
+    }
+  },
   "packageRules": [
     {
       "matchFileNames": [
