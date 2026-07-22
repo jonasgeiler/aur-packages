@@ -1,9 +1,9 @@
-#!/bin/bash
-# Git hook file
-# See: https://git-scm.com/docs/githooks
-################# SETUP ###############
-set -o errexit -o nounset -o pipefail #
-#######################################
+#!/usr/bin/env bash
+set -euo pipefail #-x
+#####################################
+#           Git hook file           #
+# https://git-scm.com/docs/githooks #
+#####################################
 
 # Escape sequences for colored output
 F_RESET="\033[0m"

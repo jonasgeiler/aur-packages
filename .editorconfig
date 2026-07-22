@@ -1,5 +1,7 @@
-# EditorConfig configuration
-# See: https://editorconfig.org
+############################
+#    EditorConfig file     #
+# https://editorconfig.org #
+############################
 
 root = true
 

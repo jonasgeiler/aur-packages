@@ -1,5 +1,7 @@
-# Git ignore file
-# See: https://git-scm.com/docs/gitignore
+######################################
+#          Git ignore file           #
+# https://git-scm.com/docs/gitignore #
+######################################
 
 # OS
 .DS_Store

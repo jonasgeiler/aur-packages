@@ -1,9 +1,9 @@
-#!/bin/bash
-# Git hook file
-# See: https://git-scm.com/docs/githooks
-################# SETUP #########################
-set -o errexit -o xtrace -o nounset -o pipefail #
-#################################################
+#!/usr/bin/env bash
+set -euo pipefail -x
+#####################################
+#           Git hook file           #
+# https://git-scm.com/docs/githooks #
+#####################################
 
 # Taken from: https://github.com/eli-schwartz/aurpublish/blob/3b978be48dde74eae86dff49d55ae29bb4a217ec/post-commit.hook
 # Fix SRCINFO files being rolled back in worktree
