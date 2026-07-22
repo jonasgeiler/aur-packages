@@ -11,6 +11,10 @@ license=(MIT)
 depends=(
 	# As reported by namcap
 	hicolor-icon-theme
+
+	# As determined by maintainers
+	fuse2
+	webkit2gtk-4.1
 )
 provides=(yaak yaak-app yaak-app-client)
 conflicts=(
