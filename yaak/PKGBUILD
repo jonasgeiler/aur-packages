@@ -3,7 +3,7 @@
 pkgname=yaak
 # renovate: datasource=github-releases depName=mountain-loop/yaak
 pkgver=2026.5.0
-pkgrel=1
+pkgrel=2
 pkgdesc='Fast, offline and Git-friendly API client for HTTP, GraphQL, WebSockets, SSE, and gRPC'
 arch=(aarch64 armv7h i686 pentium4 x86_64)
 url='https://yaak.app/'
@@ -14,14 +14,14 @@ depends=(
 	cairo
 	dbus
 	fontconfig
-	gcc-libs
 	gdk-pixbuf2
 	glib2
 	glibc
 	gtk3
 	hicolor-icon-theme
+	libgcc
 	libsoup3
-	pango
+	libstdc++
 	webkit2gtk-4.1
 	xz
 	zlib
@@ -76,4 +76,9 @@ package() {
 	install -Dm644 \
 		"${srcdir}/yaak/LICENSE" \
 		"${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
+
+	# Alias old binary name (yaak-app)
+	ln -sr \
+		"${pkgdir}/usr/bin/yaak-app-client" \
+		"${pkgdir}/usr/bin/yaak-app"
 }
