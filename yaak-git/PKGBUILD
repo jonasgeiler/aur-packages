@@ -1,7 +1,8 @@
 # Maintainer: Jonas Geiler <aur@jonasgeiler.com>
 # Maintainer: SoftExpert <softexpert at gmail dot com>
 pkgname=yaak-git
-pkgver=2025.8.2.r0.g6f0d4ad
+# Update pkgver with: makepkg --nobuild --nodeps
+pkgver=2026.5.0.r0.g195f893
 pkgrel=1
 pkgdesc='Fast, offline and Git-friendly API client for HTTP, GraphQL, WebSockets, SSE, and gRPC (Development version)'
 arch=(aarch64 armv7h i686 pentium4 x86_64)
@@ -35,6 +36,7 @@ makedepends=(
 	npm                  # Node dependencies & web build
 	protobuf             # Yaak (needs protoc)
 	rust-wasm            # Yaak
+	wasm-pack            # Yaak
 )
 provides=(yaak yaak-app)
 conflicts=(
@@ -68,7 +70,6 @@ _semver() {
 build() {
 	local _semver && _semver="$(_semver)"
 	export YAAK_VERSION="${_semver}"
-	export TAURI_APP_PATH="${srcdir}/yaak/src-tauri/"
 	export CI=true
 
 	cd "${srcdir}/yaak/"
@@ -76,8 +77,11 @@ build() {
 	npm run bootstrap
 	npm run lint
 	npm test
+	cargo test --all --exclude yaak-cli --features yaak-app-client/wry
 	npm run replace-version
-	npm run tauri build -- --bundles deb
+
+	cd "${srcdir}/yaak/crates-tauri/yaak-app-client/"
+	node ../../node_modules/@tauri-apps/cli/tauri.js build --bundles deb
 
 	sed -e 's|Name=yaak|Name=Yaak|' \
 		-e '$aGenericName=API Client' \
