@@ -1,7 +1,7 @@
 # Maintainer: Jonas Geiler <aur@jonasgeiler.com>
 # Maintainer: SoftExpert <softexpert at gmail dot com>
 pkgname=yaak-bin
-# renovate: datasource=github-releases depName=getyaak/app
+# renovate: datasource=github-releases depName=mountain-loop/yaak
 pkgver=2026.5.0
 pkgrel=3
 pkgdesc='Fast, offline and Git-friendly API client for HTTP, GraphQL, WebSockets, SSE, and gRPC (Pre-compiled version)'
