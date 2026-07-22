@@ -3,7 +3,7 @@
 pkgname=yaak-bin
 # renovate: datasource=github-releases depName=getyaak/app
 pkgver=2026.5.0
-pkgrel=1
+pkgrel=2
 pkgdesc='Fast, offline and Git-friendly API client for HTTP, GraphQL, WebSockets, SSE, and gRPC (Pre-compiled version)'
 arch=(x86_64)
 url='https://yaak.app/'
@@ -13,13 +13,14 @@ depends=(
 	cairo
 	dbus
 	fontconfig
-	gcc-libs
 	gdk-pixbuf2
 	glib2
 	glibc
 	gtk3
 	hicolor-icon-theme
+	libgcc
 	libsoup3
+	libstdc++
 	webkit2gtk-4.1
 	zlib
 )
