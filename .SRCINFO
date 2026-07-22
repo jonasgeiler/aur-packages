@@ -1,7 +1,7 @@
 pkgbase = yaak-appimage
 	pkgdesc = Fast, offline and Git-friendly API client for HTTP, GraphQL, WebSockets, SSE, and gRPC (AppImage version)
 	pkgver = 2026.5.0
-	pkgrel = 1
+	pkgrel = 2
 	url = https://yaak.app/
 	arch = aarch64
 	arch = x86_64

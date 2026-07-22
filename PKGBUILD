@@ -3,7 +3,7 @@
 pkgname=yaak-appimage
 # renovate: datasource=github-releases depName=mountain-loop/yaak
 pkgver=2026.5.0
-pkgrel=1
+pkgrel=2
 pkgdesc='Fast, offline and Git-friendly API client for HTTP, GraphQL, WebSockets, SSE, and gRPC (AppImage version)'
 arch=(aarch64 x86_64)
 url='https://yaak.app/'
