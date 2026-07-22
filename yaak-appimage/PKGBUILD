@@ -14,7 +14,7 @@ depends=(
 
 	# As determined by maintainers
 	fuse2
-	webkit2gtk-4.1
+	gtk3
 )
 provides=(yaak yaak-app yaak-app-client)
 conflicts=(
