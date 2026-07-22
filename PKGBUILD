@@ -3,9 +3,9 @@
 pkgname=yaak-bin
 # renovate: datasource=github-releases depName=getyaak/app
 pkgver=2026.5.0
-pkgrel=2
+pkgrel=3
 pkgdesc='Fast, offline and Git-friendly API client for HTTP, GraphQL, WebSockets, SSE, and gRPC (Pre-compiled version)'
-arch=(x86_64)
+arch=(aarch64 x86_64)
 url='https://yaak.app/'
 license=(MIT)
 depends=(
@@ -37,12 +37,12 @@ options=(
 	!strip     # Stripping symbols would break the binary
 	!emptydirs # Remove empty directories from package because why not
 )
-source_x86_64=(
-	"${pkgname}-${pkgver}.deb::https://github.com/mountain-loop/yaak/releases/download/v${pkgver}/yaak_${pkgver}_amd64.deb"
-	"${pkgname}-${pkgver}.LICENSE::https://raw.githubusercontent.com/mountain-loop/yaak/refs/tags/v${pkgver}/LICENSE"
-)
-b2sums_x86_64=('89cd95e5cb2d7f984e7449ecbd22061e4e4bc46ba3894aa8fc8d49a5c06f85e5752a2f141be39185510296c2a5fa55b5f349c716b362f987f3fefdbabd3fdaf0'
-               '011fb406bfe4a8944efbae1f9cfa420fe421f1de3ae628802548676a1fe1318850a5f98c60cd29899efe3946dec329b6607f04917e966808f62f9e4ecaaea13b')
+source=("${pkgname}-${pkgver}.LICENSE::https://raw.githubusercontent.com/mountain-loop/yaak/refs/tags/v${pkgver}/LICENSE")
+source_aarch64=("${pkgname}-${pkgver}-aarch64.deb::https://github.com/mountain-loop/yaak/releases/download/v${pkgver}/yaak_${pkgver}_arm64.deb")
+source_x86_64=("${pkgname}-${pkgver}-x86_64.deb::https://github.com/mountain-loop/yaak/releases/download/v${pkgver}/yaak_${pkgver}_amd64.deb")
+b2sums=('011fb406bfe4a8944efbae1f9cfa420fe421f1de3ae628802548676a1fe1318850a5f98c60cd29899efe3946dec329b6607f04917e966808f62f9e4ecaaea13b')
+b2sums_aarch64=('7744dbb3745b909b3a86b84ee6a90e9204fdd260309d2c5d35739d21b3e677347113eba5ae17657db6ecedcd2e340c595763c3c8d37f44a3606195d59024f1d3')
+b2sums_x86_64=('89cd95e5cb2d7f984e7449ecbd22061e4e4bc46ba3894aa8fc8d49a5c06f85e5752a2f141be39185510296c2a5fa55b5f349c716b362f987f3fefdbabd3fdaf0')
 
 prepare() {
 	bsdtar -xf "${srcdir}/data.tar.gz" -C "${srcdir}/"
