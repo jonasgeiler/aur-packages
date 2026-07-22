@@ -3,7 +3,7 @@
 pkgname=yaak-git
 # Update pkgver with: makepkg --nobuild --nodeps
 pkgver=2026.5.0.r0.g195f893
-pkgrel=2
+pkgrel=3
 pkgdesc='Fast, offline and Git-friendly API client for HTTP, GraphQL, WebSockets, SSE, and gRPC (Development version)'
 arch=(aarch64 armv7h i686 pentium4 x86_64)
 url='https://yaak.app/'
@@ -85,13 +85,13 @@ build() {
 
 	sed -e 's|Name=yaak|Name=Yaak|' \
 		-e '$aGenericName=API Client' \
-		-i "${srcdir}/yaak/src-tauri/target/release/bundle/deb/yaak_${_semver}_"*/data/usr/share/applications/yaak.desktop
+		-i "${srcdir}/yaak/target/release/bundle/deb/yaak_${_semver}_"*/data/usr/share/applications/yaak.desktop
 }
 
 package() {
 	local _semver && _semver="$(_semver)"
 	cp -a \
-		"${srcdir}/yaak/src-tauri/target/release/bundle/deb/yaak_${_semver}_"*/data/usr/ \
+		"${srcdir}/yaak/target/release/bundle/deb/yaak_${_semver}_"*/data/usr/ \
 		"${pkgdir}/usr/"
 	install -Dm644 \
 		"${srcdir}/yaak/LICENSE" \
