@@ -14,14 +14,14 @@ depends=(
 	cairo
 	dbus
 	fontconfig
-	gcc-libs
 	gdk-pixbuf2
 	glib2
 	glibc
 	gtk3
 	hicolor-icon-theme
+	libgcc
 	libsoup3
-	pango
+	libstdc++
 	webkit2gtk-4.1
 	xz
 	zlib
@@ -96,4 +96,9 @@ package() {
 	install -Dm644 \
 		"${srcdir}/yaak/LICENSE" \
 		"${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
+
+	# Alias old binary name (yaak-app)
+	ln -sr \
+		"${pkgdir}/usr/bin/yaak-app-client" \
+		"${pkgdir}/usr/bin/yaak-app"
 }
