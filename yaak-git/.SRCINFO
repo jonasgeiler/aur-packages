@@ -1,7 +1,7 @@
 pkgbase = yaak-git
 	pkgdesc = Fast, offline and Git-friendly API client for HTTP, GraphQL, WebSockets, SSE, and gRPC (Development version)
 	pkgver = 2026.5.0.r0.g195f893
-	pkgrel = 1
+	pkgrel = 2
 	url = https://yaak.app/
 	arch = aarch64
 	arch = armv7h
