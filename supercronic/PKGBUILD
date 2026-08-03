@@ -2,7 +2,7 @@
 # Maintainer: Rafael Baboni Dominiquini <rafaeldominiquini at gmail dot com>
 pkgname=supercronic
 # renovate: datasource=github-releases depName=aptible/supercronic
-pkgver=0.2.47
+pkgver=0.2.48
 pkgrel=1
 pkgdesc='A crontab-compatible job runner, designed specifically to run in containers'
 arch=(aarch64 arm armv6h armv7h i686 pentium4 riscv64 x86_64)
@@ -21,7 +21,7 @@ options=(
 	!emptydirs # Remove empty directories from package because why not
 )
 source=("supercronic::git+https://github.com/aptible/supercronic.git#tag=v${pkgver}")
-b2sums=('a4b322eb30bf30a3312cbfd4fa7bed51290b8600ec9b68dea51668b37744373e1934b7c973a73befd1ac4fcf780302a29a78c5481a8ee81f0cf384118988d4f6')
+b2sums=('fe6b558d0305654cff5a3ce2c93af31376f87e9088d3b92d54c93a0f91c6cf97068a78e9bcc766103bda391cac8947391a71291f3583431b0523f892c660fc55')
 
 build() {
 	export GOPATH="${srcdir}/gopath/"
