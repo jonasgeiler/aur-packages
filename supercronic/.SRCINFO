@@ -1,6 +1,6 @@
 pkgbase = supercronic
 	pkgdesc = A crontab-compatible job runner, designed specifically to run in containers
-	pkgver = 0.2.48
+	pkgver = 0.2.49
 	pkgrel = 1
 	url = https://github.com/aptible/supercronic
 	arch = aarch64
@@ -18,7 +18,7 @@ pkgbase = supercronic
 	conflicts = supercronic-git
 	options = !strip
 	options = !emptydirs
-	source = supercronic::git+https://github.com/aptible/supercronic.git#tag=v0.2.48
-	b2sums = fe6b558d0305654cff5a3ce2c93af31376f87e9088d3b92d54c93a0f91c6cf97068a78e9bcc766103bda391cac8947391a71291f3583431b0523f892c660fc55
+	source = supercronic::git+https://github.com/aptible/supercronic.git#tag=v0.2.49
+	b2sums = 84ebfbaea90bd3aa7e438d37d8ca209cdb2f5b366739bf050c8ab1a3be788944cb3da9f86f97ce60be5e6c03617924dd85dd30aa0af877d6016d41844cb0704e
 
 pkgname = supercronic
